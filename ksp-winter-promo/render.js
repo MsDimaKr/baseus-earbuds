@@ -8,13 +8,13 @@ const dir = __dirname;
 const img = (f) => 'file://' + path.join(dir, 'src', f);
 
 const P = {
-  antonia: { name: 'Одеяло Vardinon Antonia', size: '150×200 см', note: 'Текстура под овчину, подкладка из шерпы', img: 'antonia-blanket.jpg', fit: 'cover', now: '149', was: '219' },
-  unique: { name: 'Одеяло Homestyle UNIQUE', size: '150×200 см', note: '100% микрофланель + сумка из фетра в подарок', img: 'unique-blanket.jpg', fit: 'cover', pos: '50% 60%', now: '58', was: '99,90' },
-  vardinon: { name: 'Пуховое одеяло Vardinon', size: '200×220 см', note: '88% гусиное перо, 12% пух, хлопок перкаль', img: 'vardinon-down.jpg', fit: 'cover', pos: '50% 40%', now: '436', was: '499' },
-  wind: { name: 'Пуховое одеяло Homestyle Wind', size: '150×200 см', note: 'Перо и пух в дышащем чехле из перкаля', img: 'wind-down.jpg', fit: 'contain', now: '163', was: '249' },
-  hudson: { name: 'Набор полотенец Homestyle Hudson', size: '4 полотенца 70×130 см', note: '100% хлопок, отлично впитывают', img: 'hudson-towels.jpg', fit: 'contain', now: '199', was: '249' },
-  popcorn: { name: 'Халат Homestyle Popcorn', size: 'Халат из микрофланели', note: 'Тёплый, в разных цветах', img: 'popcorn-robe.jpg', fit: 'contain', now: '51', was: '89,90' },
-  amore: { name: 'Детский халат Little Amore', size: 'Детский махровый халат', note: 'В разных цветах', img: 'little-amore-robe.jpg', fit: 'contain', now: '110', was: '155' },
+  antonia: { name: 'Одеяло Vardinon Antonia', size: '150×200 см', note: '150×200 см · текстура под овчину, подкладка из шерпы', img: 'antonia-blanket.jpg', fit: 'cover', now: '149', was: '219' },
+  unique: { name: 'Одеяло Homestyle UNIQUE', size: '150×200 см', note: '150×200 см · 100% микрофланель, сумка из фетра в комплекте', img: 'unique-blanket.jpg', fit: 'cover', pos: '50% 60%', now: '58', was: '99,90' },
+  vardinon: { name: 'Пуховое одеяло Vardinon', size: '200×220 см', note: 'Двуспальное 200×220 см · 88% гусиное перо, 12% пух, перкаль', img: 'vardinon-down.jpg', fit: 'cover', pos: '50% 40%', now: '436', was: '499' },
+  wind: { name: 'Пуховое одеяло Homestyle Wind', size: '150×200 см', note: '150×200 см · перо и пух, чехол из хлопка перкаль', img: 'wind-down.jpg', fit: 'contain', now: '163', was: '249' },
+  hudson: { name: 'Набор полотенец Homestyle Hudson', size: '4 полотенца 70×130 см', note: '4 шт. 70×130 см · 100% хлопок, хорошо впитывают', img: 'hudson-towels.jpg', fit: 'contain', now: '199', was: '249' },
+  popcorn: { name: 'Халат Homestyle&nbsp;Popcorn', size: 'Халат из микрофланели', note: 'Тёплый, из микрофланели · разные цвета', img: 'popcorn-robe.jpg', fit: 'contain', now: '51', was: '89,90' },
+  amore: { name: 'Детский халат Little&nbsp;Amore', size: 'Детский махровый халат', note: 'Махровый · разные цвета', img: 'little-amore-robe.jpg', fit: 'contain', now: '110', was: '155' },
 };
 const num = (s) => parseFloat(s.replace(',', '.'));
 const pct = (p) => Math.round((1 - num(p.now) / num(p.was)) * 100);
@@ -34,22 +34,22 @@ h1 em { font-style: normal; color: #c8102e; }
   box-shadow: 0 14px 30px rgba(200,16,46,.35); transform: rotate(8deg); text-align: center; }
 .promo b { font-family: 'Inter Display'; font-weight: 900; font-size: 72px; line-height: 1; }
 .promo small { font-size: 19px; font-weight: 700; line-height: 1.15; margin-top: 4px; }
-.grid { flex: 1; min-height: 0; display: grid; gap: 18px; margin-top: 30px; }
+.grid { flex: 1; min-height: 0; display: grid; gap: 16px; margin-top: 18px; }
 .card { min-height: 0; min-width: 0; position: relative; background: #fff; border-radius: 26px; overflow: hidden; box-shadow: 0 10px 28px rgba(29,42,68,.12); display: flex; flex-direction: column; }
 .card .ph { flex: 1; min-height: 0; position: relative; }
 .card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .card .ph img.contain { object-fit: contain; padding: 10px; }
 .card .ph img.cover { object-fit: cover; }
 .off { position: absolute; top: 14px; left: 14px; background: #c8102e; color: #fff; font-weight: 800; font-size: 24px; padding: 6px 14px; border-radius: 999px; }
-.info { padding: 14px 20px 18px; }
+.info { padding: 12px 18px 14px; }
 .card.row { flex-direction: row; align-items: stretch; }
-.card.row .ph { flex: 0 0 50%; }
+.card.row .ph { flex: 0 0 40%; }
 .card.row .info { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 24px 20px 4px; }
 .head { min-height: 250px; }
 .info .n { font-weight: 800; font-size: 25px; line-height: 1.15; }
 .info .s { font-size: 19px; color: #5b6b86; margin-top: 3px; }
-.info .d { font-size: 19px; color: #5b6b86; margin-top: 6px; line-height: 1.3; }
-.price { display: flex; align-items: baseline; gap: 12px; margin-top: 8px; }
+.info .d { font-size: 17px; color: #5b6b86; margin-top: 5px; line-height: 1.3; }
+.price { display: flex; align-items: baseline; gap: 12px; margin-top: 4px; }
 .price .now { font-family: 'Inter Display'; font-weight: 900; font-size: 40px; color: #c8102e; }
 .price .was { font-size: 22px; color: #8a97ad; text-decoration: line-through; }
 .foot { height: 112px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
@@ -70,6 +70,7 @@ const card = (p, { area, details = true, row = false } = {}) => `
   <div class="ph"><img class="${p.fit}" style="object-position:${p.pos || '50% 50%'}" src="${img(p.img)}"><div class="off">−${pct(p)}%</div></div>
   <div class="info">
     <div class="n">${p.name}</div>
+    <div class="d">${p.note}</div>
     <div class="price"><span class="now">${p.now} ₪</span><span class="was">${p.was} ₪</span></div>
   </div>
 </div>`;
@@ -92,7 +93,7 @@ const pages = {
     title: 'Готовимся<br>к <em>зиме</em>',
     brands: 'Vardinon · Homestyle · Little Amore',
     badge: 'дополнительно<br>на всё',
-    grid: `grid-template-columns: repeat(6, 1fr); grid-template-rows: 1.2fr 1.1fr 0.9fr; grid-template-areas: 'a a a b b b' 'c c d d e e' 'f f f g g g';`,
+    grid: `grid-template-columns: repeat(6, 1fr); grid-template-rows: 1.25fr 1.25fr 0.8fr; grid-template-areas: 'a a a b b b' 'c c d d e e' 'f f f g g g';`,
     cards: [
       card(P.antonia, { area: 'a', details: false }), card(P.unique, { area: 'b', details: false }),
       card(P.vardinon, { area: 'c', details: false }), card(P.wind, { area: 'd', details: false }), card(P.hudson, { area: 'e', details: false }),
