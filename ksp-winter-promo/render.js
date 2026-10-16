@@ -8,13 +8,13 @@ const dir = __dirname;
 const img = (f) => 'file://' + path.join(dir, 'src', f);
 
 const P = {
-  antonia: { name: 'Vardinon Antonia', size: '150×200 см', note: 'Текстура под овчину, подкладка из шерпы', img: 'antonia-blanket.jpg', fit: 'cover', now: '149', was: '219' },
-  unique: { name: 'Homestyle UNIQUE', size: '150×200 см', note: '100% микрофланель + сумка из фетра в подарок', img: 'unique-blanket.jpg', fit: 'cover', pos: '50% 60%', now: '58', was: '99,90' },
-  vardinon: { name: 'Vardinon двуспальное одеяло', size: '200×220 см', note: '88% гусиное перо, 12% пух, хлопок перкаль', img: 'vardinon-down.jpg', fit: 'cover', pos: '50% 40%', now: '436', was: '499' },
-  wind: { name: 'Homestyle Wind', size: '150×200 см', note: 'Перо и пух в дышащем чехле из перкаля', img: 'wind-down.jpg', fit: 'contain', now: '163', was: '249' },
-  hudson: { name: 'Homestyle Hudson', size: '4 полотенца 70×130 см', note: '100% хлопок, отлично впитывают', img: 'hudson-towels.jpg', fit: 'contain', now: '199', was: '249' },
-  popcorn: { name: 'Homestyle Popcorn', size: 'Халат из микрофланели', note: 'Тёплый, в разных цветах', img: 'popcorn-robe.jpg', fit: 'contain', now: '51', was: '89,90' },
-  amore: { name: 'Little Amore детский махровый халат', size: 'Детский махровый халат', note: 'В разных цветах', img: 'little-amore-robe.jpg', fit: 'contain', now: '110', was: '155' },
+  antonia: { name: 'Одеяло Vardinon Antonia', size: '150×200 см', note: 'Текстура под овчину, подкладка из шерпы', img: 'antonia-blanket.jpg', fit: 'cover', now: '149', was: '219' },
+  unique: { name: 'Одеяло Homestyle UNIQUE', size: '150×200 см', note: '100% микрофланель + сумка из фетра в подарок', img: 'unique-blanket.jpg', fit: 'cover', pos: '50% 60%', now: '58', was: '99,90' },
+  vardinon: { name: 'Пуховое одеяло Vardinon', size: '200×220 см', note: '88% гусиное перо, 12% пух, хлопок перкаль', img: 'vardinon-down.jpg', fit: 'cover', pos: '50% 40%', now: '436', was: '499' },
+  wind: { name: 'Пуховое одеяло Homestyle Wind', size: '150×200 см', note: 'Перо и пух в дышащем чехле из перкаля', img: 'wind-down.jpg', fit: 'contain', now: '163', was: '249' },
+  hudson: { name: 'Набор полотенец Homestyle Hudson', size: '4 полотенца 70×130 см', note: '100% хлопок, отлично впитывают', img: 'hudson-towels.jpg', fit: 'contain', now: '199', was: '249' },
+  popcorn: { name: 'Халат Homestyle Popcorn', size: 'Халат из микрофланели', note: 'Тёплый, в разных цветах', img: 'popcorn-robe.jpg', fit: 'contain', now: '51', was: '89,90' },
+  amore: { name: 'Детский халат Little Amore', size: 'Детский махровый халат', note: 'В разных цветах', img: 'little-amore-robe.jpg', fit: 'contain', now: '110', was: '155' },
 };
 const num = (s) => parseFloat(s.replace(',', '.'));
 const pct = (p) => Math.round((1 - num(p.now) / num(p.was)) * 100);
