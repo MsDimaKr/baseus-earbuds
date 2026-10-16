@@ -53,7 +53,8 @@ h1 em { font-style: normal; color: #c8102e; }
 .price .now { font-family: 'Inter Display'; font-weight: 900; font-size: 40px; color: #c8102e; }
 .price .was { font-size: 22px; color: #8a97ad; text-decoration: line-through; }
 .foot { height: 112px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.foot .ksp { background: #1d2a44; color: #fff; font-weight: 900; font-size: 34px; padding: 10px 26px; border-radius: 16px; letter-spacing: .04em; white-space: nowrap; }
+.foot .ksp { background: #fff; padding: 8px 20px; border-radius: 16px; box-shadow: 0 6px 18px rgba(29,42,68,.12); flex: none; }
+.foot .ksp img { height: 54px; display: block; }
 .foot p { font-size: 19px; color: #3c4d6b; line-height: 1.35; }
 `;
 
@@ -74,7 +75,7 @@ const card = (p, { area, details = true, row = false } = {}) => `
   </div>
 </div>`;
 
-const foot = `<div class="foot"><div class="ksp">KSP</div><p>Доп. скидка 5% — по ссылкам в посте, суммируется с акцией.<br>До 31.10.2026 или до окончания запасов.</p></div>`;
+const foot = `<div class="foot"><div class="ksp"><img src="${img('ksp-logo.png')}"></div><p>Доп. скидка 5% — по ссылкам в посте, суммируется с акцией.<br>До 31.10.2026 или до окончания запасов.</p></div>`;
 
 const page = ({ kicker, title, brands, badge, grid, cards }) => `<!doctype html><html lang="ru"><head><meta charset="utf-8"><style>${css}</style></head>
 <body>${flakes()}<div class="wrap">
