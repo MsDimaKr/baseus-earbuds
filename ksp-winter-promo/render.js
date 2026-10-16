@@ -1,4 +1,4 @@
-// Renders the KSP winter promo collages to PNG (1080×1350).
+// Renders the KSP winter promo collage (all products) to PNG (1080×1350).
 // Usage: node ksp-winter-promo/render.js
 const path = require('path');
 const fs = require('fs');
@@ -87,7 +87,7 @@ const page = ({ kicker, title, brands, badge, grid, cards }) => `<!doctype html>
 </div></body></html>`;
 
 const pages = {
-  '01-cover': page({
+  'ksp-winter-all-products': page({
     kicker: '❄ Зимняя распродажа в KSP',
     title: 'Готовимся<br>к <em>зиме</em>',
     brands: 'Vardinon · Homestyle · Little Amore',
@@ -98,30 +98,6 @@ const pages = {
       card(P.vardinon, { area: 'c', details: false }), card(P.wind, { area: 'd', details: false }), card(P.hudson, { area: 'e', details: false }),
       card(P.popcorn, { area: 'f', details: false, row: true }), card(P.amore, { area: 'g', details: false, row: true }),
     ].join(''),
-  }),
-  '02-winter-blankets': page({
-    kicker: '🧸 Зимние одеяла',
-    title: 'Тепло и уют<br>в <em>холодные</em> вечера',
-    brands: 'Vardinon · Homestyle',
-    badge: 'суммируется<br>с акцией',
-    grid: `grid-template-columns: 1fr 1fr; grid-template-areas: 'a b';`,
-    cards: card(P.antonia, { area: 'a' }) + card(P.unique, { area: 'b' }),
-  }),
-  '03-down-blankets': page({
-    kicker: '🪶 Пуховые одеяла',
-    title: 'Лёгкие, как <em>облако</em>',
-    brands: 'Vardinon · Homestyle — натуральные перо и пух',
-    badge: 'суммируется<br>с акцией',
-    grid: `grid-template-columns: 1fr 1fr; grid-template-areas: 'a b';`,
-    cards: card(P.vardinon, { area: 'a' }) + card(P.wind, { area: 'b' }),
-  }),
-  '04-towels-robes': page({
-    kicker: '🛁 Полотенца и халаты',
-    title: 'Мягкость<br>после <em>душа</em>',
-    brands: 'Vardinon · Homestyle · Little Amore',
-    badge: 'суммируется<br>с акцией',
-    grid: `grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; grid-template-areas: 'a a' 'b c';`,
-    cards: card(P.hudson, { area: 'a', row: true }) + card(P.popcorn, { area: 'b' }) + card(P.amore, { area: 'c' }),
   }),
 };
 
