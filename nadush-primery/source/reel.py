@@ -24,6 +24,10 @@ CSS = BASE_CSS + f"""
 .chip{{display:inline-flex;align-items:center;gap:12px;padding:18px 34px;border-radius:40px;background:{BG};font-size:34px;font-weight:600;
  box-shadow:0 14px 34px rgba(48,37,34,.08), inset 0 1px 0 rgba(255,255,255,.8)}}
 .cap{{font-size:36px;line-height:1.4;opacity:.8}}
+.pk{{position:relative;background:none;border:3px solid rgba(183,127,128,.45)}}
+.pf{{position:absolute;inset:-3px;border-radius:50%;background:{ACC};transform:scale(0)}}
+.pc{{position:relative;font-style:normal;color:{BG};opacity:0}}
+#shine{{position:absolute;top:-20px;bottom:-20px;width:120px;left:-200px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}}
 """ + HOOK2.replace(".eye{", ".eyew{") + END_CSS
 
 def A(html, d, k="up", extra="", cls="", tag="div"):
@@ -31,28 +35,28 @@ def A(html, d, k="up", extra="", cls="", tag="div"):
 
 S = []
 # 1 hook
-S.append(f"""{A(EYE,0.1,'pop',cls='eyew')}
-<div class="center h1">{A('Портятся ли',0.6,tag='span',extra='display:inline-block')}<br>{A('свои ресницы',1.0,tag='span',cls='serif',extra='display:inline-block')}<br>{A('после',1.4,tag='span',extra='display:inline-block')}<br>{A('наращивания?',1.6,tag='span',extra='display:inline-block')}</div>
-{A('Честный ответ мастера ↓',2.3,cls='cta')}""")
+S.append(f"""{A(EYE,0.0,'fade',cls='eyew')}
+<div class="center h1">{A('Портятся ли',0.7,tag='span',extra='display:inline-block')}<br>{A('свои ресницы',1.05,tag='span',cls='serif',extra='display:inline-block')}<br>{A('после',1.4,tag='span',extra='display:inline-block')}<br>{A('наращивания?',1.6,tag='span',extra='display:inline-block')}</div>
+{A('Честный ответ мастера <span id="bob" style="display:inline-block;margin-left:10px">↓</span>',2.2,cls='cta')}""")
 # 2 short answer
 rows = "".join(A(f'<span class="chk" style="font-size:30px">{i+1}</span>{s}', 1.6+i*0.35, cls='card', extra=f'top:{900+i*170}px;height:140px;display:flex;align-items:center;gap:30px;padding:0 44px;font-size:42px;font-weight:600') for i,s in enumerate(["Техника","Правильная нагрузка","Бережное снятие"]))
 S.append(f"""{A('КОРОТКИЙ ОТВЕТ',0,cls='tag')}
 {A('Не<br>обязательно.',0.2,cls='center serif',extra='top:400px;font-size:150px;line-height:1')}
 {A('Само по себе наращивание не означает, что натуральные ресницы испортятся. Важны:',0.9,cls='center cap',extra='top:740px;padding:0 120px')}{rows}""")
 # 3 isolation
-iso = ""; glue = ""
-for i in range(14):
-    x = 90 + i*52; h = 230 + 20*math.sin(i)
-    iso += f'<path d="M{x},480 Q{x-6},{480-h*0.6} {x+40+i*2},{480-h}" stroke="{TXT}" stroke-width="7" fill="none" stroke-linecap="round"/>'
-    j = i - (i % 2); tx = 90 + j*52 + 60 + j*2
-    glue += f'<path d="M{x},480 Q{x-4 + (10 if i%2==0 else -10)},{480-h*0.6} {tx},{480-h}" stroke="#9E5F60" stroke-width="7" fill="none" stroke-linecap="round"/>'
+LASHES=[]
+for i in range(18):
+    x = 70 + i*45; h = 250 + 18*math.sin(i*1.3)
+    j = i - (i % 2); tx = 70 + j*45 + 48 + j*1.5
+    LASHES.append(dict(x=x, gy=480-h, gtx=tx, gcx=x+(14 if i%2==0 else -14), itx=x+30+i*1.6, icx=x-6, cy=480-h*0.6))
+lashsvg = "".join(f'<path class="ls" stroke-width="7" fill="none" stroke-linecap="round"/>' for _ in LASHES)
 skin = f'<path d="M0,480 Q450,440 900,480 L900,620 L0,620Z" fill="url(#sk)"/><path d="M0,480 Q450,440 900,480" stroke="{TXT}" stroke-width="5" fill="none"/><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9B8AA"/><stop offset="1" stop-color="#C49A8C"/></linearGradient></defs>'
 chipcss = f"position:absolute;left:50%;transform:translateX(-50%);top:40px;color:{BG};box-shadow:none;white-space:nowrap"
 S.append(f"""{A('01 ИЗОЛЯЦИЯ',0,cls='tag')}
 <div class="center t">{A('Каждая ресница —',0.2)}{A('отдельно',0.5,cls='serif')}</div>
-{A(f'''<div id="glue" style="position:absolute;inset:0"><svg viewBox="0 0 900 620" width="900">{glue}{skin}</svg><div class="chip" style="{chipcss};background:#9E5F60">✕ Склейка</div></div>
-<div id="iso" style="position:absolute;inset:0;opacity:0"><svg viewBox="0 0 900 620" width="900">{iso}{skin}</svg><div class="chip" style="{chipcss};background:{ACC}">✓ Изоляция</div></div>''',0.9,cls='card',extra='top:720px;height:620px;overflow:hidden')}
-{A('Каждая ресница остаётся свободной — без склеек с соседними',3.4,cls='center cap',extra='top:1400px;padding:0 140px')}""")
+{A(f'''<svg id="isosvg" viewBox="0 0 900 620" width="900" style="position:absolute;left:0;top:0">{lashsvg}{skin}<circle id="mag" cx="-200" cy="330" r="105" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="5" opacity=".95"/></svg>
+<div id="glue" class="chip" style="{chipcss};background:#9E5F60">✕ Склейка</div><div id="iso" class="chip" style="{chipcss};background:{ACC};opacity:0">✓ Изоляция</div>''',0.5,cls='card',extra='top:720px;height:620px;overflow:hidden')}
+{A('Каждая ресница остаётся свободной — без склеек с соседними',2.0,cls='center cap',extra='top:1400px;padding:0 140px')}""")
 # 4 length & volume
 S.append(f"""{A('02 ДЛИНА И ОБЪЁМ',0,cls='tag')}
 <div class="center t">{A('Под <span class="serif">ваши</span>',0.2)}{A('натуральные ресницы',0.45)}</div>
@@ -60,14 +64,14 @@ S.append(f"""{A('02 ДЛИНА И ОБЪЁМ',0,cls='tag')}
  <div style="position:relative;height:90px;margin-top:40px">
   <div style="position:absolute;left:0;right:0;top:36px;height:18px;border-radius:9px;background:linear-gradient(90deg,#E9D9CF,#D9B5AE 45%,{ACC} 75%,#8F5B5C)"></div>
   <div style="position:absolute;left:31%;width:28%;top:20px;height:50px;border-radius:26px;border:4px solid {TXT}"></div>
-  <div id="knob" style="position:absolute;left:calc(88% - 26px);top:19px;width:52px;height:52px;border-radius:50%;background:{BG};border:6px solid {TXT};box-shadow:0 6px 14px rgba(48,37,34,.2)"></div></div>
+  <div id="knob" style="position:absolute;left:calc(3% - 26px);top:19px;width:52px;height:52px;border-radius:50%;background:{BG};border:6px solid {TXT};box-shadow:0 6px 14px rgba(48,37,34,.2)"></div></div>
  <div style="display:flex;justify-content:space-between;font-size:26px;opacity:.75;margin-top:6px"><span>лёгкая</span><b>оптимальная</b><span>перегруз</span></div>
  <div style="position:relative;height:50px;margin-top:34px;font-size:38px;font-weight:700;text-align:center">
-  <div id="heavy" style="position:absolute;left:0;right:0;color:#8F5B5C">Слишком тяжело ✕</div>
+  <div id="heavy" style="position:absolute;left:0;right:0;color:#8F5B5C;opacity:0">Слишком тяжело ✕</div>
   <div id="ok" style="position:absolute;left:0;right:0;color:{ACC};opacity:0">В самый раз ✓</div></div>''',0.8,cls='card',extra='top:720px;padding:50px 54px 46px')}
 <div class="center" style="top:1220px">{A('Длина ✓',3.2,tag='span',cls='chip')} &nbsp; {A('Объём ✓',3.45,tag='span',cls='chip')}</div>""")
 # 5 clean
-rows = "".join(A(f'<span class="chk">✓</span>{s}',1.0+i*0.6,extra='display:flex;align-items:center;gap:30px;padding:38px 0;font-size:40px;font-weight:600') for i,s in enumerate(["Контроль чистоты работы","Отсутствие склеек","Каждая ресница свободна"]))
+rows = "".join(A(f'<span class="chk pk" data-d="{1.3+i*0.6}"><b class="pf"></b><i class="pc">✓</i></span>{s}',1.0+i*0.6,extra='display:flex;align-items:center;gap:30px;padding:38px 0;font-size:40px;font-weight:600') for i,s in enumerate(["Контроль чистоты работы","Отсутствие склеек","Каждая ресница свободна"]))
 S.append(f"""{A('03 ЧИСТОТА РАБОТЫ',0,cls='tag')}
 <div class="center t">{A('Контроль',0.2)}{A('каждой детали',0.45,cls='serif')}</div>
 {A(rows,0.7,cls='card',extra='top:720px;padding:20px 50px',k='fade')}""")
@@ -78,10 +82,10 @@ S.append(f"""{A('04 СНЯТИЕ',0,cls='tag')}
  <div style="font-size:44px;font-weight:700;line-height:1.3;margin-top:16px">выдёргивать наращённые ресницы самостоятельно или тянуть их</div>''',0.6,cls='card',extra='top:620px;padding:46px 54px')}
 {A(f'''<svg viewBox="0 0 600 340" width="600">
  <path d="M60,250 Q300,220 540,250" stroke="{TXT}" stroke-width="6" fill="none" stroke-linecap="round"/>
- <path d="M290,240 Q280,160 320,70" stroke="{TXT}" stroke-width="8" fill="none" stroke-linecap="round"/>
- <path d="M345,180 L345,60 M320,90 L345,60 L370,90" stroke="{ACC}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>''',1.3,extra='position:absolute;left:240px;top:1000px')}
-{A(f'''<svg viewBox="0 0 600 340" width="600"><circle cx="315" cy="160" r="115" stroke="{ACC}" stroke-width="10" fill="none"/><path d="M233,78 L397,242" stroke="{ACC}" stroke-width="10" stroke-linecap="round"/></svg>''',2.2,'pop',extra='position:absolute;left:240px;top:1000px')}
-{A('<span class="chk">✓</span>Аккуратное снятие у мастера — без выдёргивания',3.0,cls='card',extra='top:1400px;padding:36px 44px;display:flex;align-items:center;gap:28px;font-size:38px;font-weight:600')}""")
+ <g id="pull"><path d="M290,240 Q280,160 320,70" stroke="{TXT}" stroke-width="8" fill="none" stroke-linecap="round"/>
+ <path d="M345,180 L345,60 M320,90 L345,60 L370,90" stroke="{ACC}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>''',1.3,extra='position:absolute;left:240px;top:1000px')}
+{A(f'''<svg viewBox="0 0 600 340" width="600"><circle id="nc" cx="315" cy="160" r="115" stroke="{ACC}" stroke-width="10" fill="none" stroke-dasharray="723" stroke-dashoffset="723" transform="rotate(-90 315 160)"/><path id="nl" d="M233,78 L397,242" stroke="{ACC}" stroke-width="10" stroke-linecap="round" stroke-dasharray="232" stroke-dashoffset="232"/></svg>''',2.0,'fade',extra='position:absolute;left:240px;top:1000px')}
+{A('<span class="chk pk" data-d="3.4"><b class="pf"></b><i class="pc">✓</i></span>Аккуратное снятие у мастера — без выдёргивания',3.0,cls='card',extra='top:1400px;padding:36px 44px;display:flex;align-items:center;gap:28px;font-size:38px;font-weight:600')}""")
 # 7 honest
 S.append(f"""{A(f'''<div class="serif" style="font-size:84px;line-height:1;margin-bottom:34px">Честно:</div>
 <p style="font-size:44px;line-height:1.4;font-weight:500">При правильной технике риск повреждения <b style="text-decoration:underline;text-decoration-color:{ACC};text-decoration-thickness:4px;text-underline-offset:8px">снижается</b>, но полностью исключить индивидуальные реакции и осложнения нельзя.</p>''',0.2,cls='card',extra='top:620px;padding:70px 64px')}""")
@@ -90,9 +94,9 @@ S.append(f"""<div style="position:absolute;left:90px;right:90px;top:640px">
 {A('Профессионализм —',0.1,extra='font-size:84px;font-weight:700;letter-spacing:-2px')}
 {A('это не только<br>красивый эффект.',0.5,cls='serif',extra='font-size:96px;line-height:1.05;margin-top:6px')}
 {A('Это внимание к каждой детали, которую клиентка не всегда может увидеть сама.',1.2,cls='cap',extra='margin-top:44px;font-size:42px')}</div>
-<div class="center" style="top:1380px;font-size:40px;color:{ACC};font-weight:700">{A('Красота',2.0,tag='span',cls='chip')} &nbsp;{A('+',2.2,tag='span',extra='display:inline-block')}&nbsp; {A('Качество',2.4,tag='span',cls='chip')}</div>""")
+<div class="center" style="top:1380px;font-size:40px;color:{ACC};font-weight:700">{A('Красота',2.0,tag='span',cls='chip')} &nbsp;{A('<span id="plus" style="display:inline-block">+</span>',2.2,tag='span',extra='display:inline-block')}&nbsp; {A('Качество',2.4,tag='span',cls='chip')}</div>""")
 # 9 final
-S.append(f"""{A(f'<div id="logo">{logo()}</div>',0.1,'pop',cls='logo')}
+S.append(f"""{A(f'<div id="logo">{logo().replace("<text font-family=\"Manrope\"","<text id=\"ring\" font-family=\"Manrope\"")}</div>',0.1,'pop',cls='logo')}
 {A('Надежда Дидковская',0.6,cls='center name')}
 {A('Наращивание и ламинирование ресниц',0.8,cls='center sub')}
 <div class="center" style="top:1030px">
@@ -100,16 +104,17 @@ S.append(f"""{A(f'<div id="logo">{logo()}</div>',0.1,'pop',cls='logo')}
 {A('бережного отношения',1.5,extra='font-size:84px;font-weight:800;letter-spacing:-2px;line-height:1.05;'+NG)}
 {A(f'<i style="width:90px;height:2px;background:{ACC};opacity:.6"></i><span class="dot"></span><i style="width:90px;height:2px;background:{ACC};opacity:.6"></i>',1.9,extra='display:flex;align-items:center;justify-content:center;gap:20px;margin:28px 0 20px')}
 {A('Красота, созданная с заботой о тебе',2.1,extra='font-size:44px;font-weight:800;'+NG)}</div>
-{A('Запись в Direct или WhatsApp →',2.7,'pop',cls='btn',extra='top:1440px')}
+{A('<span style="position:relative;z-index:1">Запись в Direct или WhatsApp →</span><i id="shine"></i>',2.7,'pop',cls='btn',extra='top:1440px;overflow:hidden')}
 {A('@nadush_beauty',3.0,cls='handle',extra='top:1630px')}""")
 
 scenes_html = "".join(f'<div class="scene" data-s="{s}" data-e="{e}">{h}</div>' for (s,e),h in zip(SCENES,S))
 bars = "".join('<i><b></b></i>' for _ in range(9))
 JS = f"""
-const SC={json.dumps(SCENES)}; const T={TOTAL};
+const SC={json.dumps(SCENES)}; const LS={json.dumps(LASHES)}; const T={TOTAL};
 const ease=x=>1-Math.pow(1-Math.min(Math.max(x,0),1),3);
 const cl=x=>Math.min(Math.max(x,0),1);
 window.setTime=function(t){{
+ const g=document.querySelector('.glow'); g.style.transform=`translate(${{Math.sin(t*0.35)*60}}px,${{Math.cos(t*0.27)*50}}px) scale(1.15)`;
  document.querySelectorAll('.bars b').forEach((b,i)=>{{const[s,e]=SC[i];b.style.width=(cl((t-s)/(e-s))*100)+'%';}});
  document.querySelectorAll('.scene').forEach(sc=>{{
   const s=+sc.dataset.s,e=+sc.dataset.e; const last=e>=T;
@@ -124,10 +129,28 @@ window.setTime=function(t){{
    if(k==='up'){{el.style.translate=`0 ${{(1-p)*40}}px`; el.style.filter=p<1?`blur(${{(1-p)*14}}px)`:'none';}}
    else if(k==='pop'){{el.style.scale=0.85+0.15*p; el.style.filter=p<1?`blur(${{(1-p)*10}}px)`:'none';}}
   }});
-  if(sc.querySelector('#iso')){{const q=ease((lt-2.6)/0.8); sc.querySelector('#iso').style.opacity=q; sc.querySelector('#glue').style.opacity=1-q;}}
-  if(sc.querySelector('#knob')){{const q=ease((lt-1.8)/1.0); sc.querySelector('#knob').style.left=`calc(${{88-43*q}}% - 26px)`;
-    sc.querySelector('#ok').style.opacity=q; sc.querySelector('#heavy').style.opacity=1-q;}}
-  if(sc.querySelector('#logo')){{const tp=sc.querySelector('#logo textPath'); if(tp) tp.setAttribute('startOffset', (lt*1.5)+'%');}}
+  const svg=sc.querySelector('#isosvg'); if(svg){{
+   const mx=-150+1200*cl((lt-1.1)/1.8); svg.querySelector('#mag').setAttribute('cx',mx);
+   svg.querySelector('#mag').style.opacity = (lt>1.0 && lt<3.0)?1:0;
+   svg.querySelectorAll('.ls').forEach((p,i)=>{{const L=LS[i]; const q=ease((mx-L.x+20)/90);
+    const tx=L.gtx+(L.itx-L.gtx)*q, cx=L.gcx+(L.icx-L.gcx)*q;
+    p.setAttribute('d',`M${{L.x}},480 Q${{cx}},${{L.cy}} ${{tx}},${{L.gy}}`);
+    const c0=[158,95,96],c1=[48,37,34]; p.setAttribute('stroke',`rgb(${{c0.map((v,k)=>Math.round(v+(c1[k]-v)*q)).join(',')}})`);}});
+   const q=ease((lt-2.9)/0.4); sc.querySelector('#iso').style.opacity=q; sc.querySelector('#glue').style.opacity=1-q;
+   sc.querySelector('#iso').style.scale=0.8+0.2*q;}}
+  if(sc.querySelector('#knob')){{const a=ease((lt-1.3)/0.8), b=ease((lt-2.5)/0.8); const pos=3+89*a-47*b;
+    sc.querySelector('#knob').style.left=`calc(${{pos}}% - 26px)`;
+    const h=ease((lt-1.9)/0.3)*(1-ease((lt-2.6)/0.3)); sc.querySelector('#heavy').style.opacity=h; sc.querySelector('#ok').style.opacity=ease((lt-3.0)/0.3);}}
+  sc.querySelectorAll('.pk').forEach(k=>{{const q=cl((lt-(+k.dataset.d))/0.3); const s=q<1?(q*1.25 - (q>0.8?(q-0.8)*1.25:0)):1;
+    k.querySelector('.pf').style.transform=`scale(${{s}})`; k.querySelector('.pc').style.opacity=cl((lt-(+k.dataset.d)-0.15)/0.2);}});
+  const pull=sc.querySelector('#pull'); if(pull){{pull.style.transform=`translateY(${{-Math.abs(Math.sin(lt*4))*14}}px)`; pull.style.transformBox='fill-box';
+    const q=ease((lt-2.0)/0.5); sc.querySelector('#nc').setAttribute('stroke-dashoffset',723*(1-q)); sc.querySelector('#nl').setAttribute('stroke-dashoffset',232*(1-ease((lt-2.4)/0.3)));}}
+  const pl=sc.querySelector('#plus'); if(pl) pl.style.transform=`rotate(${{360*ease((lt-2.8)/1.2)}}deg)`;
+  const sh=sc.querySelector('#shine'); if(sh){{const c=((lt-3.2)%2.6+2.6)%2.6; sh.style.left=(lt<3.2?-200:(-200+1100*cl(c/0.9)))+'px';}}
+  const bob=sc.querySelector('#bob'); if(bob) bob.style.transform=`translateY(${{Math.sin(lt*5)*6}}px)`;
+  const eb=sc.querySelector('#rbr'); if(eb){{eb.setAttribute('width',720*ease((lt-0.25)/0.7)); sc.querySelector('#rlr').setAttribute('width',720*ease((lt-0.35)/0.6));
+    sc.querySelector('#eiris').style.transform=`scale(${{0.3+0.7*ease((lt-0.1)/0.45)}})`;}}
+  const rg=sc.querySelector('#ring'); if(rg) rg.setAttribute('transform',`rotate(${{lt*14}} 220 220)`);
  }});
 }};
 """
