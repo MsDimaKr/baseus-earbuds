@@ -43,7 +43,7 @@ def eye_ref(browstyle, browfill, inner, rays, ringc):
     return f"""<svg viewBox="0 0 720 480" width="800">
 <defs><clipPath id="ce"><path d="{eyepath}"/></clipPath><clipPath id="rb"><rect id="rbr" x="0" y="0" width="720" height="480"/></clipPath><clipPath id="rl"><rect id="rlr" x="0" y="0" width="720" height="480"/></clipPath></defs>
 <g clip-path="url(#rb)">{brow(browstyle, browfill)}</g>
-<path d="{eyepath}" fill="#FBF6F2"/>
+<g id="eball" style="transform-origin:372px 330px"><path d="{eyepath}" fill="#FBF6F2"/>
 <g clip-path="url(#ce)">
  <path d="M{U0[0]},{U0[1]} Q{U1[0]},{U1[1]} {U2[0]},{U2[1]} L{U2[0]},{U2[1]+40} Q{U1[0]},{U1[1]+70} {U0[0]},{U0[1]+30}Z" fill="#E6D3CA"/>
  <g id="eiris" style="transform-origin:372px 325px">{iris(372, 325, 84, rays, ringc, inner)}</g>
@@ -55,7 +55,7 @@ def eye_ref(browstyle, browfill, inner, rays, ringc):
 <g clip-path="url(#rl)">{lashes(U0,U1,U2,56,lmin=50,lmax=74,w=5,t0=.06,t1=.97,a0=-4,a1=50)}
 {lashes(U0,U1,U2,55,lmin=42,lmax=64,w=4.4,t0=.075,t1=.96,a0=2,a1=56)}
 {lashes(U0,D1,U2,30,down=True,filled=False,lmin=18,lmax=24,t0=.32,t1=.96,a0=0,a1=38,sw=2.6)}
-{small}</g>
+{small}</g></g>
 </svg>"""
 
 HOOK2 = HOOK_CSS.replace("top:330px", "top:270px").replace("top:830px", "top:880px").replace("top:1420px", "top:1470px")
