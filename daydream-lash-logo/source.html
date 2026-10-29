@@ -1,0 +1,119 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3E8E1;--rose:#B77F80;--dk:#302522;--g1:#C9979A;--g2:#A86F72;--g3:#8F5B5C}
+*{margin:0;box-sizing:border-box}
+body{width:2700px;height:1800px;background:#E9DAD0;font-family:Manrope}
+.grid{display:grid;grid-template-columns:repeat(3,900px);grid-template-rows:repeat(2,900px)}
+.c{position:relative;background:var(--bg);margin:0;border:1px solid #E0CFC4;display:flex;align-items:center;justify-content:center}
+.c.dark{background:var(--dk)}
+.n{position:absolute;left:36px;top:30px;font:600 26px Manrope;color:var(--g3);letter-spacing:.12em}
+.c.dark .n{color:#C9979A}
+.t{position:absolute;left:36px;bottom:30px;font:500 24px Manrope;color:#8a7068}
+.c.dark .t{color:#b79a93}
+svg{width:800px;height:800px;overflow:visible}
+.serif{font-family:'Cormorant Garamond',serif}
+</style></head><body>
+<div class="grid">
+<div class="c"><div class="n">1</div><svg id="l1" viewBox="0 0 800 800"></svg><div class="t">Солнце-ресницы</div></div>
+<div class="c"><div class="n">2</div><svg id="l2" viewBox="0 0 800 800"></svg><div class="t">Каллиграфия</div></div>
+<div class="c"><div class="n">3</div><svg id="l3" viewBox="0 0 800 800"></svg><div class="t">Сонный глаз</div></div>
+<div class="c"><div class="n">4</div><svg id="l4" viewBox="0 0 800 800"></svg><div class="t">Печать-бейдж</div></div>
+<div class="c dark"><div class="n">5</div><svg id="l5" viewBox="0 0 800 800"></svg><div class="t">Монограмма DL</div></div>
+<div class="c" style="flex-direction:column;gap:30px">
+ <div class="n">ПАЛИТРА</div>
+ <div style="display:flex;gap:30px"><div style="width:170px;height:170px;border-radius:50%;background:#F3E8E1;border:2px solid #d9c6ba"></div><div style="width:170px;height:170px;border-radius:50%;background:linear-gradient(135deg,#C9979A,#A86F72,#8F5B5C)"></div><div style="width:170px;height:170px;border-radius:50%;background:#B77F80"></div><div style="width:170px;height:170px;border-radius:50%;background:#302522"></div></div>
+ <div style="font:500 26px Manrope;color:#8a7068;text-align:center;line-height:1.5">молочный беж · градиент N-круга<br>пудровая роза · тёплый шоколад</div>
+</div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+function el(p,t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt)e.textContent=txt;p.appendChild(e);return e}
+function defs(svg,id){const d=el(svg,'defs',{});const g=el(d,'linearGradient',{id:'g'+id,x1:0,y1:0,x2:1,y2:1});
+ [['0','#C9979A'],['.5','#A86F72'],['1','#8F5B5C']].forEach(s=>el(g,'stop',{offset:s[0],'stop-color':s[1]}));return d}
+// lash fan along ellipse arc. a0,a1 degrees (0=right, 90=down in svg coords)
+function fan(svg,cx,cy,rx,ry,a0,a1,n,len0,len1,w,color,flip=1,bend=.35,lift=0){
+ for(let i=0;i<n;i++){const u=n==1?.5:i/(n-1);const th=(a0+(a1-a0)*u)*Math.PI/180;
+  const px=cx+rx*Math.cos(th),py=cy+ry*Math.sin(th);
+  let nx=Math.cos(th)/rx,ny=Math.sin(th)/ry;const nl=Math.hypot(nx,ny);nx/=nl;ny/=nl;
+  const side=Math.cos(th)>=0?1:-1; // outward sideways
+  const prof=Math.sin(Math.PI*(.12+.76*u)); // longer in middle/outer
+  const L=len0+(len1-len0)*Math.pow(Math.abs(u-.5)*2,1.4)*0+ (len1-len0)*prof;
+  const tx=-ny*side*(-1),ty=nx*side*(-1);
+  const ex=px+nx*L+ (-ny)*bend*L*flip*(-side)*-1, ey=py+ny*L+ (nx)*bend*L*flip*(-side)*-1;
+  const cxp=px+nx*L*.55, cyp=py+ny*L*.55;
+  el(svg,'path',{d:`M${px.toFixed(1)} ${py.toFixed(1)} Q${cxp.toFixed(1)} ${cyp.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`,fill:'none',stroke:color,'stroke-width':w,'stroke-linecap':'round'});}
+}
+function T(svg,x,y,txt,a,anchor='middle'){return el(svg,'text',Object.assign({x,y,'text-anchor':anchor},a),txt)}
+
+// ---------- 1: sun-lash ----------
+(()=>{const s=document.getElementById('l1');defs(s,1);
+ el(s,'path',{d:'M250 400 A150 150 0 0 1 550 400 Z',fill:'url(#g1)'});
+ el(s,'line',{x1:170,y1:400,x2:630,y2:400,stroke:'#302522','stroke-width':6,'stroke-linecap':'round'});
+ fan(s,400,400,150,150,198,342,15,46,90,7,'#302522',1,.28);
+ T(s,400,545,'Daydream',{class:'serif','font-size':150,'font-weight':600,'font-style':'italic',fill:'#302522'});
+ T(s,400,625,'L A S H   S T U D I O',{'font-size':30,'font-weight':600,fill:'#B77F80','letter-spacing':'.35em'});
+ T(s,400,680,'ЕКАТЕРИНА · ИЕРУСАЛИМ',{'font-size':0,fill:'none'});
+})();
+
+// ---------- 2: calligraphy ----------
+(()=>{const s=document.getElementById('l2');defs(s,2);
+ T(s,400,420,'Daydream',{style:"font-family:'Pinyon Script'",'font-size':210,fill:'url(#g2)'});
+ // lash swash under
+ const sw=el(s,'path',{d:'M130 470 C300 520 520 520 690 440',fill:'none',stroke:'#B77F80','stroke-width':4,'stroke-linecap':'round'});
+ for(let i=0;i<9;i++){const u=i/8;const x=210+u*400;const y=500+Math.sin(u*Math.PI)*8-u*12;
+  const L=24+Math.sin(u*Math.PI)*26;
+  el(s,'path',{d:`M${x} ${y} q ${12} ${L*.5} ${L*.35} ${L}`,fill:'none',stroke:'#B77F80','stroke-width':4,'stroke-linecap':'round'});}
+ T(s,400,640,'LASH',{'font-size':54,'font-weight':600,fill:'#302522','letter-spacing':'.55em'});
+ el(s,'line',{x1:170,y1:622,x2:280,y2:622,stroke:'#B77F80','stroke-width':3});
+ el(s,'line',{x1:540,y1:622,x2:650,y2:622,stroke:'#B77F80','stroke-width':3});
+})();
+
+// ---------- 3: sleepy eye ----------
+(()=>{const s=document.getElementById('l3');defs(s,3);
+ // closed eye: lid arc bowl
+ el(s,'path',{d:'M180 330 Q400 470 620 330',fill:'none',stroke:'url(#g3)','stroke-width':12,'stroke-linecap':'round'});
+ // lashes downward along the curve
+ for(let i=0;i<11;i++){const u=i/10;const x=180+440*u;const y=330+2*(1-u)*u*280*0.5*2*0.5*1; // quad bezier y at u: 2(1-u)u*140+... compute exactly
+  const bx=(1-u)*(1-u)*180+2*(1-u)*u*400+u*u*620, by=(1-u)*(1-u)*330+2*(1-u)*u*470+u*u*330;
+  const tx=2*(1-u)*(400-180)+2*u*(620-400), ty=2*(1-u)*(470-330)+2*u*(330-470);
+  const tl=Math.hypot(tx,ty);let nx=ty/tl,ny=-tx/tl; if(ny<0){nx=-nx;ny=-ny}
+  const L=44+60*Math.sin(Math.PI*(.1+.8*u)); const side=(u-.5)*2;
+  const ex=bx+nx*L+side*L*.38,ey=by+ny*L;
+  el(s,'path',{d:`M${bx.toFixed(1)} ${by.toFixed(1)} Q${(bx+nx*L*.6).toFixed(1)} ${(by+ny*L*.6).toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`,fill:'none',stroke:'#302522','stroke-width':7,'stroke-linecap':'round'});}
+ // sparkles
+ function sp(x,y,r,c){el(s,'path',{d:`M${x} ${y-r} Q${x} ${y} ${x+r} ${y} Q${x} ${y} ${x} ${y+r} Q${x} ${y} ${x-r} ${y} Q${x} ${y} ${x} ${y-r}Z`,fill:c})}
+ sp(630,210,34,'#B77F80');sp(560,160,18,'#C9979A');sp(190,230,22,'#C9979A');
+ // moon
+ el(s,'path',{d:'M160 170 a46 46 0 1 0 52 62 a38 38 0 1 1 -52 -62z',fill:'url(#g3)',transform:'translate(30 0)'});
+ T(s,400,620,'DAYDREAM',{'font-size':92,'font-weight':600,fill:'#302522','letter-spacing':'.28em',class:'serif'});
+ T(s,400,690,'L A S H',{'font-size':34,'font-weight':600,fill:'#B77F80','letter-spacing':'.8em'});
+})();
+
+// ---------- 4: badge ----------
+(()=>{const s=document.getElementById('l4');defs(s,4);
+ el(s,'circle',{cx:400,cy:400,r:340,fill:'url(#g4)'});
+ el(s,'circle',{cx:400,cy:400,r:322,fill:'none',stroke:'#F3E8E1','stroke-width':2.5});
+ el(s,'circle',{cx:400,cy:400,r:210,fill:'none',stroke:'#F3E8E1','stroke-width':2.5});
+ el(s,'path',{id:'tp',d:'M400 400 m-266 0 a266 266 0 1 1 532 0 a266 266 0 1 1 -532 0',fill:'none'});
+ const t=el(s,'text',{'font-size':46,'font-weight':600,fill:'#F3E8E1','letter-spacing':'.26em','font-family':'Manrope'});
+ const tpp=el(t,'textPath',{href:'#tp',startOffset:'0'},'DAYDREAM LASH  ·  LASH EXTENSIONS  ·  ');
+ // cloud with lash fringe
+ el(s,'path',{d:'M290 440 a52 52 0 0 1 20 -100 a70 70 0 0 1 130 -18 a56 56 0 0 1 72 92 a42 42 0 0 1 -12 26 Z',fill:'#F3E8E1'});
+ for(let i=0;i<9;i++){const u=i/8;const x=300+u*200;const L=32+26*Math.sin(Math.PI*(.1+.8*u));
+  el(s,'path',{d:`M${x} 442 q ${(u-.5)*22} ${L*.6} ${(u-.5)*52} ${L}`,fill:'none',stroke:'#F3E8E1','stroke-width':6,'stroke-linecap':'round'});}
+ T(s,400,350,'',{});
+})();
+
+// ---------- 5: monogram ----------
+(()=>{const s=document.getElementById('l5');defs(s,5);
+ el(s,'circle',{cx:400,cy:330,r:210,fill:'url(#g5)'});
+ // D and L interlock
+ T(s,360,418,'D',{class:'serif','font-size':300,'font-weight':700,'font-style':'italic',fill:'#F3E8E1'});
+ T(s,470,436,'L',{class:'serif','font-size':260,'font-weight':600,'font-style':'italic',fill:'#302522','fill-opacity':.88});
+ fan(s,400,330,222,222,205,335,13,18,40,5,'#C9979A',1,.3);
+ T(s,400,640,'Daydream Lash',{class:'serif','font-size':100,'font-weight':600,'font-style':'italic',fill:'#F3E8E1'});
+ T(s,400,700,'L A S H   E X T E N S I O N S',{'font-size':26,'font-weight':600,fill:'#C9979A','letter-spacing':'.3em'});
+})();
+document.fonts.ready.then(()=>document.body.setAttribute('data-ready',1));
+</script></body></html>
