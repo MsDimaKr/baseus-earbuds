@@ -98,7 +98,7 @@ const section = (r) => `
 const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><style>${css}</style></head>
 <body>${deco()}<div class="wrap">
   <div class="head"><div class="kicker">🪒 Бритьё со скидкой в KSP</div>
-  <h1>Гладко, остро —<br>и <em>выгодно</em></h1>
+  <h1>Идеальное бритьё<br>по <em>выгодной</em> цене</h1>
   <div class="brands">Gillette · Gillette Venus · +5% поверх акций</div></div>
   <div class="promo"><small>скидки<br>до</small><b>−${maxOff}%</b></div>
   <div class="rows">${ROWS.map(section).join('')}</div>
