@@ -10,7 +10,7 @@ const img = (f) => 'file://' + path.join(dir, 'src', f);
 
 const ROWS = [
   {
-    brand: 'Gillette Venus', cls: 'venus', note: 'для женщин · +5% к акции на весь бренд',
+    brand: 'Gillette Venus', logo: 'venus-logo.png', cls: 'venus', note: 'для женщин · +5% к акции на весь бренд',
     items: [
       { name: 'Comfort Glide Sensitive', size: '5 лезвий, 6 кассет с алоэ', img: 'venus-comfortglide-sensitive-6.jpg', now: '65', was: '119' },
       { name: 'ComfortGlide Pro', size: '5 лезвий, 10 кассет, кокос', img: 'venus-comfortglide-pro-10.jpg', now: '84', was: '177' },
@@ -49,6 +49,7 @@ h1 em { font-style: normal; color: #c8102e; }
 .rows { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
 .sec { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .sec .lbl { display: flex; align-items: baseline; gap: 14px; margin: 0 0 8px 4px; }
+.sec .lbl img { height: 40px; width: auto; display: block; align-self: flex-end; }
 .sec .lbl b { font-family: 'Inter Display'; font-weight: 900; font-size: 30px; }
 .sec .lbl span { font-size: 18px; font-weight: 600; color: #56617e; }
 .venus .lbl b { color: #2f8f86; }
@@ -90,7 +91,7 @@ const card = (p) => `
 
 const section = (r) => `
 <div class="sec ${r.cls}">
-  <div class="lbl"><b>${r.brand}</b><span>${r.note}</span></div>
+  <div class="lbl">${r.logo ? `<img src="${img(r.logo)}" alt="${r.brand}">` : `<b>${r.brand}</b>`}<span>${r.note}</span></div>
   <div class="cards">${r.items.map(card).join('')}</div>
 </div>`;
 
