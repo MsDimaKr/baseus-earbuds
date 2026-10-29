@@ -1,0 +1,106 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#st{position:absolute;inset:0;overflow:hidden;background:#000}
+.v{position:absolute;inset:0;display:none}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.word{position:absolute;left:0;right:0;text-align:center;font-family:'Great Vibes';line-height:1.3;
+ background:linear-gradient(100deg,#7d5a2b 0%,#c9a062 22%,#fff1cf 38%,#e2c48c 50%,#a77d42 66%,#f6e2b4 80%,#8c6a35 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.wsh{position:absolute;left:0;right:0;text-align:center;font-family:'Great Vibes';line-height:1.3;color:rgba(20,10,4,.85);filter:blur(10px)}
+/* glass */
+#gBg{filter:blur(22px) brightness(.42) saturate(.9);transform:scale(1.08)}
+#gLens{position:absolute;inset:0}
+#gRing{position:absolute;border-radius:50%;pointer-events:none}
+#gChrom{position:absolute;border-radius:50%;mix-blend-mode:screen;pointer-events:none}
+/* shards */
+#sh{perspective:1500px;transform-style:preserve-3d}
+.shd{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.shd img,.shd .gl{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.shd .gl{background:linear-gradient(135deg,rgba(255,255,255,.0) 30%,rgba(255,250,235,.85) 50%,rgba(255,255,255,0) 70%);mix-blend-mode:screen}
+#sGlint{position:absolute;inset:0;mix-blend-mode:screen;pointer-events:none}
+</style></head><body><div id="st">
+<div class="v" id="vglass"><img class="full" id="gBg" src="before_full.jpg"><div id="gLens"><img class="full" id="gIn" src="before_full.jpg" style="transform-origin:0 0"></div><div id="gChrom"></div><div id="gRing"></div></div>
+<div class="v" id="vink"><svg class="full" viewBox="0 0 1080 1920">
+ <defs><filter id="dis" filterUnits="userSpaceOnUse" x="-300" y="-300" width="1680" height="2520"><feTurbulence id="turb" type="fractalNoise" baseFrequency="0.009" numOctaves="4" seed="5"/><feDisplacementMap in="SourceGraphic" scale="170" xChannelSelector="R" yChannelSelector="G"/></filter>
+ <filter id="glow" filterUnits="userSpaceOnUse" x="-300" y="-300" width="1680" height="2520"><feGaussianBlur stdDeviation="18"/></filter>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c6a35"/><stop offset=".35" stop-color="#f6e2b4"/><stop offset=".55" stop-color="#c9a062"/><stop offset=".8" stop-color="#fff1cf"/><stop offset="1" stop-color="#a77d42"/></linearGradient>
+ <mask id="im" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920"><g filter="url(#dis)" id="mk"></g></mask></defs>
+ <g filter="url(#glow)" opacity=".8"><g filter="url(#dis)" id="gk2"></g></g>
+ <g filter="url(#dis)" id="gk"></g>
+ <image href="before_full.jpg" width="1080" height="1920" mask="url(#im)"/></svg></div>
+<div class="v" id="vshard"><div id="sh" class="full"></div><div id="sGlint"></div></div>
+<div class="v" id="vdust"><canvas id="cv" width="1080" height="1920" class="full"></canvas><img class="full" id="dImg" src="before_full.jpg" style="opacity:0"></div>
+<div class="wsh" id="wDoS" style="top:1330px;font-size:330px">До</div><div class="word" id="wDo" style="top:1330px;font-size:330px">До</div>
+</div>
+<script src="pdata.js"></script>
+<script>
+const $=id=>document.getElementById(id);const NS='http://www.w3.org/2000/svg';
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-cl(x),3), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}, ei=x=>Math.pow(cl(x),2);
+const pulse=(t,c,w)=>Math.exp(-Math.pow((t-c)/w,2));
+let seed=3;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const V=(location.hash||'#glass').slice(1);$('v'+V).style.display='block';
+function word(t,t0,dur=0.9){const el=$('wDo'),sh=$('wDoS');const p=cl((t-t0)/dur);
+ const r=-20+p*140;const m=`linear-gradient(90deg,#000 ${r}%,transparent ${r+18}%)`;
+ [el,sh].forEach(e=>{e.style.webkitMaskImage=m;e.style.maskImage=m;e.style.opacity=t<t0?0:1});
+ el.style.backgroundPosition=(100-((t-t0)*38)%260)+'% 0';const s=1.08-0.08*eo(p),y=(1-eo(p))*30;
+ el.style.transform=sh.style.transform=`translateY(${y}px) scale(${s})`;
+ el.style.filter=`blur(${(1-eo(p))*6}px) drop-shadow(0 0 ${12+8*Math.sin(t*3)}px rgba(255,225,170,.5))`}
+// ---------- glass
+function glass(t){
+ const a=eio(t/1.3);const bx=(1-a)**2*170+2*(1-a)*a*180+a*a*560, by=(1-a)**2*1650+2*(1-a)*a*900+a*a*820;
+ const g=eio((t-1.25)/0.75);
+ const R=250+40*a+1300*g, m=1.38-0.38*g;
+ $('gLens').style.clipPath=`circle(${R}px at ${bx}px ${by}px)`;
+ $('gIn').style.transform=`translate(${bx}px,${by}px) scale(${m}) translate(${-bx}px,${-by}px)`;
+ $('gIn').style.filter=`brightness(${1.08-0.08*g}) saturate(1.1)`;
+ const ring=$('gRing'),ch=$('gChrom');[ring,ch].forEach(e=>{e.style.left=(bx-R)+'px';e.style.top=(by-R)+'px';e.style.width=e.style.height=(2*R)+'px'});
+ const ro=1-cl((t-1.7)/0.3);ring.style.opacity=ro;ch.style.opacity=ro*.85;
+ ring.style.boxShadow=`inset 0 0 ${R*.18}px rgba(255,255,255,.55), inset ${-R*.12}px ${-R*.16}px ${R*.35}px rgba(0,0,0,.35), 0 0 ${R*.25}px rgba(255,240,215,.25)`;
+ ring.style.background=`radial-gradient(ellipse 34% 20% at 34% 22%, rgba(255,255,255,.75), rgba(255,255,255,0) 70%), radial-gradient(circle at 70% 82%, rgba(255,235,200,.25), transparent 30%)`;
+ ch.style.background=`conic-gradient(from ${t*90}deg, rgba(255,80,80,.7), rgba(255,220,120,.7), rgba(120,255,200,.6), rgba(110,160,255,.7), rgba(230,120,255,.6), rgba(255,80,80,.7))`;
+ const mk=`radial-gradient(circle, transparent ${R-14}px, #000 ${R-5}px, transparent ${R}px)`;ch.style.webkitMaskImage=mk;ch.style.maskImage=mk;
+ $('gBg').style.opacity=1-0.0*g;
+ word(t,1.8);
+}
+// ---------- ink
+const INK=[[330,760,0.0],[820,1150,0.3],[440,1560,0.55],[880,380,0.7]];
+INK.forEach(()=>{['mk','gk','gk2'].forEach(id=>{const c=document.createElementNS(NS,'circle');c.setAttribute('fill',id=='mk'?'#fff':'url(#gold)');$(id).appendChild(c)})});
+function ink(t){const radius=(i)=>{const p=eio((t-0.1-INK[i][2])/1.9);return 1500*p};
+ INK.forEach((k,i)=>{const r=radius(i);['mk','gk','gk2'].forEach(id=>{const c=$(id).children[i];c.setAttribute('cx',k[0]);c.setAttribute('cy',k[1]);c.setAttribute('r',Math.max(0,id=='mk'?r:r+26))})});
+ $('turb').setAttribute('baseFrequency',(0.009+0.0015*Math.sin(t*2)).toFixed(4));
+ word(t,1.8);}
+// ---------- shards
+const SH=[];(function(){const C=5,R=8,cw=1080/C,rh=1920/R;const P=[];
+ for(let j=0;j<=R;j++){P.push([]);for(let i=0;i<=C;i++){let x=i*cw,y=j*rh;if(i>0&&i<C)x+=(rnd()-.5)*cw*.7;if(j>0&&j<R)y+=(rnd()-.5)*rh*.7;P[j].push([x,y])}}
+ for(let j=0;j<R;j++)for(let i=0;i<C;i++){const a=P[j][i],b=P[j][i+1],c=P[j+1][i+1],d=P[j+1][i];const tr=rnd()<.5?[[a,b,c],[a,c,d]]:[[a,b,d],[b,c,d]];
+  tr.forEach(pts=>{const el=document.createElement('div');el.className='shd';el.style.clipPath='polygon('+pts.map(p=>p[0].toFixed(1)+'px '+p[1].toFixed(1)+'px').join(',')+')';
+   el.innerHTML='<img src="before_full.jpg"><div class="gl"></div>';$('sh').appendChild(el);
+   const cx=(pts[0][0]+pts[1][0]+pts[2][0])/3,cy=(pts[0][1]+pts[1][1]+pts[2][1])/3;const d=Math.hypot(cx-540,cy-900)/1100;
+   SH.push({el,cx,cy,t0:0.05+d*0.85+rnd()*0.2,dx:(cx-540)*(1.2+rnd()),dy:(cy-900)*(1.0+rnd())+(rnd()-.5)*400,dz:600+rnd()*900,rx:(rnd()-.5)*160,ry:(rnd()-.5)*160,rz:(rnd()-.5)*120})})}})();
+function shards(t){SH.forEach(s=>{const p=eo((t-s.t0)/0.9);const q=1-p;
+ s.el.style.transformOrigin=`${s.cx}px ${s.cy}px`;
+ s.el.style.transform=`translate3d(${s.dx*q}px,${s.dy*q}px,${s.dz*q}px) rotateX(${s.rx*q}deg) rotateY(${s.ry*q}deg) rotateZ(${s.rz*q}deg)`;
+ s.el.style.opacity=cl((t-s.t0)/0.25);s.el.lastChild.style.opacity=pulse(t,s.t0+0.7,0.12)*0.9+q*0.25;
+ s.el.firstChild.style.filter=`brightness(${1+0.5*q})`});
+ const gp=cl((t-1.75)/0.55);$('sGlint').style.background=`linear-gradient(120deg,transparent ${gp*140-30}%,rgba(255,248,230,.6) ${gp*140-15}%,transparent ${gp*140}%)`;$('sGlint').style.opacity=t>1.75&&t<2.3?1:0;
+ word(t,1.8);}
+// ---------- dust
+const cv=$('cv'),cx=cv.getContext('2d');const N=PW*PH;const PD=new Float32Array(N*6);
+seed=9;for(let i=0;i<N;i++){const x=(i%PW)*PST+PST/2,y=Math.floor(i/PW)*PST+PST/2;const a=rnd()*Math.PI*2,r=300+rnd()*1100;
+ PD[i*6]=x;PD[i*6+1]=y;PD[i*6+2]=a;PD[i*6+3]=r;PD[i*6+4]=0.05+(y/1920)*0.45+rnd()*0.35;PD[i*6+5]=rnd()}
+function dust(t){cx.fillStyle='#000';cx.fillRect(0,0,1080,1920);
+ for(let i=0;i<N;i++){const o=i*6;const p=eio((t-PD[o+4])/1.0);if(p<=0&&PD[o+5]>0.35)continue;
+  const ang=PD[o+2]+(1-p)*2.4+t*0.6*(1-p);const r=PD[o+3]*(1-p);
+  const sx=540+Math.cos(ang)*PD[o+3],sy=900+Math.sin(ang)*PD[o+3]*1.5;
+  const x=PD[o]*p+sx*(1-p),y=PD[o+1]*p+sy*(1-p);
+  const R=PCOL[i*3],G=PCOL[i*3+1],B=PCOL[i*3+2];
+  const cr=232*(1-p)+R*p,cg=196*(1-p)+G*p,cb=138*(1-p)+B*p;
+  const tw=p<1?(0.35+0.65*Math.abs(Math.sin(t*7+PD[o+5]*20))):1;
+  cx.globalCompositeOperation=p<0.98?'lighter':'source-over';cx.globalAlpha=(0.55+0.45*p)*tw;cx.fillStyle=`rgb(${cr|0},${cg|0},${cb|0})`;const s=p<0.98?3.8+3*p:PST+1.5;cx.fillRect(x-s/2,y-s/2,s,s)}
+ cx.globalCompositeOperation='source-over';cx.globalAlpha=1;$('dImg').style.opacity=cl((t-1.55)/0.45);word(t,1.8);}
+window.setTime=function(t){({glass,ink,shard:shards,dust})[V](t)};
+document.fonts.ready.then(()=>Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))).then(()=>{setTime(0);document.body.dataset.ready=1});
+</script></body></html>
