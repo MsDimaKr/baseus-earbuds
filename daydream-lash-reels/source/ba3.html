@@ -1,0 +1,187 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#d9c2a8}
+#st{position:absolute;inset:0;overflow:hidden}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 38%,#f6ebdf 0%,#e8d5c0 45%,#d4b99c 80%,#c2a382 100%)}
+.sat{position:absolute;border-radius:50%;background:radial-gradient(ellipse,rgba(255,250,242,.75),rgba(255,250,242,0) 70%);filter:blur(20px)}
+#sw{position:absolute;inset:0}
+#dust{position:absolute;inset:0}
+.card{position:absolute;border-radius:40px;padding:7px;background:linear-gradient(135deg,#8c6a35,#f3dca8 25%,#b8904f 45%,#fff1cf 62%,#9c7840 85%,#e6c98f);
+ box-shadow:0 40px 90px rgba(80,52,24,.38),0 8px 20px rgba(80,52,24,.25)}
+.card .in{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#000}
+.card img{position:absolute;left:0;top:0;transform-origin:0 0}
+#flip{position:absolute;left:120px;top:235px;width:840px;height:1120px;perspective:2600px}
+#fl{position:absolute;inset:0;transform-style:preserve-3d}
+.face{position:absolute;inset:0;backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.gl{position:absolute;inset:0;border-radius:34px;overflow:hidden;mix-blend-mode:screen;pointer-events:none}
+.gl div{position:absolute;top:-30%;width:220px;height:160%;background:linear-gradient(90deg,transparent,rgba(255,248,228,.3),transparent);transform:rotate(18deg);left:-400px}
+.word{position:absolute;left:0;right:0;text-align:center;font-family:'Great Vibes';line-height:1.3;padding:0 80px;
+ background:linear-gradient(100deg,#4e3312 0%,#7d5a2b 20%,#b8904f 34%,#f3dca8 43%,#a77d42 54%,#5f4119 70%,#9c7840 86%,#4e3312 100%);background-size:260% 100%;
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+.wsh{position:absolute;left:0;right:0;text-align:center;font-family:'Great Vibes';line-height:1.3;color:rgba(255,248,235,.9);filter:blur(9px);padding:0 80px}
+#spl .card{position:absolute;left:100px;width:880px;height:560px}
+#flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,#fffaf0,#fff0d8 45%,rgba(255,236,210,0) 80%);opacity:0}
+#logo{position:absolute;left:150px;top:330px;width:780px;height:780px}
+#logo img{width:100%;height:100%;border-radius:50%;box-shadow:0 34px 90px rgba(80,52,24,.38)}
+#glint{position:absolute;inset:0;border-radius:50%;overflow:hidden;mix-blend-mode:screen}
+#glint div{position:absolute;top:-20%;width:180px;height:140%;background:linear-gradient(90deg,transparent,rgba(255,248,225,.75),transparent);transform:rotate(20deg)}
+#wa{position:absolute;left:50%;top:1215px;height:150px;border-radius:75px;padding:0 54px 0 22px;display:flex;align-items:center;gap:28px;
+ background:rgba(255,251,245,.85);box-shadow:0 14px 40px rgba(90,60,30,.25),inset 0 0 0 3px rgba(201,160,98,.85);white-space:nowrap}
+#wa .num{font-family:'Cormorant Garamond';font-weight:700;font-size:84px;letter-spacing:.02em;
+ background:linear-gradient(100deg,#6e4d22,#a77d42 40%,#c9a062 55%,#6e4d22);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.bgv{display:none}
+body.marble #marble,body.silk #silk,body.glass #glassbg,body.dark #darkbg{display:block}
+body.marble .sat,body.silk .sat,body.glass .sat,body.dark .sat{display:none}
+.gb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.9}
+body.glass .card{background:rgba(255,255,255,.22);padding:22px;border-radius:56px;backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);
+ box-shadow:inset 0 2px 1px rgba(255,255,255,.9),inset 0 -2px 2px rgba(255,255,255,.35),inset 2px 0 2px rgba(255,255,255,.4),0 40px 90px rgba(120,70,50,.28),0 0 0 1.5px rgba(255,255,255,.55)}
+body.glass .card .in{border-radius:38px}
+body.dark .word{background-image:linear-gradient(100deg,#b8904f 0%,#e9cf98 22%,#fff3d6 38%,#e2c48c 50%,#c9a062 66%,#f6e2b4 80%,#b8904f 100%)}
+body.dark .wsh{color:rgba(0,0,0,.7)}
+body.dark .swp{opacity:.35!important}
+</style></head><body><div id="st">
+<div id="bg"></div>
+<svg id="marble" class="bgv" viewBox="0 0 1080 1920" preserveAspectRatio="none" style="position:absolute;inset:0;width:1080px;height:1920px">
+ <filter id="mf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.0016 0.0042" numOctaves="5" seed="4" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.2 0.6 0 0 -0.5" result="a"/>
+  <feComponentTransfer in="a" result="v"><feFuncA type="table" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0.75 0.25 0 0 0 0 0 0.2 0.35 0 0 0 0 0 0 0 0 0 0 0"/></feComponentTransfer>
+  <feGaussianBlur in="v" stdDeviation="0.6" result="v2"/><feFlood flood-color="#b8925a"/><feComposite in2="v2" operator="in" result="gold"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.003" numOctaves="3" seed="9"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 .97 0 0 0 0 .93 0 0 0 -1.2 1.0" result="cl"/>
+  <feMerge><feMergeNode in="cl"/><feMergeNode in="gold"/></feMerge></filter>
+ <rect width="1080" height="1920" fill="#efe4d6"/><rect width="1080" height="1920" filter="url(#mf)"/>
+ <rect width="1080" height="1920" fill="url(#mv)"/><defs><radialGradient id="mv" cx=".5" cy=".4" r=".8"><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#8c6a45" stop-opacity=".35"/></radialGradient></defs></svg>
+<svg id="silk" class="bgv" viewBox="0 0 1080 1920" style="position:absolute;inset:0;width:1080px;height:1920px">
+ <defs><filter id="sb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter>
+ <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9845f"/><stop offset=".45" stop-color="#f7ead8"/><stop offset=".55" stop-color="#fffaf2"/><stop offset="1" stop-color="#b8956c"/></linearGradient>
+ <linearGradient id="f2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c7a37a"/><stop offset=".5" stop-color="#fff6ea"/><stop offset="1" stop-color="#9a7550"/></linearGradient></defs>
+ <rect width="1080" height="1920" fill="#d8bf9f"/>
+ <g filter="url(#sb)" id="folds"></g></svg>
+<div id="glassbg" class="bgv" style="position:absolute;inset:0;background:#e9d3c0;overflow:hidden">
+ <div class="gb" style="width:900px;height:900px;background:#f2b9a0"></div><div class="gb" style="width:800px;height:800px;background:#e8c48c"></div>
+ <div class="gb" style="width:1000px;height:1000px;background:#fff1e2"></div><div class="gb" style="width:700px;height:700px;background:#d99a8e"></div><div class="gb" style="width:760px;height:760px;background:#f6dcb5"></div></div>
+<div id="darkbg" class="bgv" style="position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 40%,#4a3426,#2a1c14 60%,#160e0a);overflow:hidden">
+ <div id="rays" style="position:absolute;left:-400px;top:-500px;width:1900px;height:1900px;background:repeating-conic-gradient(from 200deg at 50% 30%,rgba(255,220,160,.07) 0deg 4deg,transparent 4deg 11deg);filter:blur(6px);mask-image:radial-gradient(circle at 50% 30%,#000,transparent 65%);-webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 65%)"></div>
+ <svg id="bok" viewBox="0 0 1080 1920" style="position:absolute;inset:0;width:1080px;height:1920px"></svg></div>
+
+<div class="sat" id="s1" style="width:1500px;height:420px"></div><div class="sat" id="s2" style="width:1300px;height:340px"></div><div class="sat" id="s3" style="width:1100px;height:300px"></div>
+<svg id="sw" viewBox="0 0 1080 1920"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9c7840" stop-opacity="0"/><stop offset=".3" stop-color="#c9a062"/><stop offset=".6" stop-color="#fff1cf"/><stop offset="1" stop-color="#9c7840" stop-opacity="0"/></linearGradient></defs>
+ <path class="swp" d="M-80 300 C 250 120, 600 520, 1160 180" /><path class="swp" d="M-80 1640 C 300 1460, 700 1900, 1160 1560"/><path class="swp" d="M-80 1720 C 360 1580, 760 1840, 1160 1660"/><path class="swp" d="M-80 230 C 330 60, 700 420, 1160 120"/></svg>
+<svg id="dust" viewBox="0 0 1080 1920"></svg>
+<!-- flip card -->
+<div id="flip"><div id="fl">
+ <div class="face card" id="cf" style="inset:0"><div class="in"><img id="bimg" src="before.jpg"><div class="gl"><div></div></div></div></div>
+ <div class="face back card" id="cb" style="inset:0"><div class="in"><img id="aimg" src="after.jpg"><svg id="spk" viewBox="0 0 1086 1448" style="position:absolute;left:0;top:0;width:1086px;height:1448px;transform-origin:0 0;overflow:visible"></svg><div class="gl"><div></div></div></div></div>
+</div></div>
+<div class="wsh" id="wDoS" style="top:1335px;font-size:250px">До</div><div class="word" id="wDo" style="top:1335px;font-size:250px">До</div>
+<div class="wsh" id="wPoS" style="top:1335px;font-size:240px">После</div><div class="word" id="wPo" style="top:1335px;font-size:240px">После</div>
+<!-- split -->
+<div id="spl" style="position:absolute;inset:0;opacity:0">
+ <div class="card" id="c1" style="top:300px"><div class="in"><img id="p1" src="before.jpg"></div></div>
+ <div class="card" id="c2" style="top:975px"><div class="in"><img id="p2" src="after.jpg"></div></div>
+ <div class="wsh" id="sDoS" style="top:745px;font-size:170px;text-align:left;padding-left:120px">До</div><div class="word" id="sDo" style="top:745px;font-size:170px;text-align:left;padding-left:120px">До</div>
+ <div class="wsh" id="sPoS" style="top:1420px;font-size:170px;text-align:left;padding-left:120px">После</div><div class="word" id="sPo" style="top:1420px;font-size:170px;text-align:left;padding-left:120px">После</div>
+</div>
+<!-- final -->
+<div id="fin" style="position:absolute;inset:0;opacity:0">
+ <div id="logo"><img src="logo_round.png"><div id="glint"><div></div></div></div>
+ <div id="wa"><svg width="112" height="112" viewBox="0 0 112 112"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5FFC7B"/><stop offset="1" stop-color="#28D146"/></linearGradient></defs>
+  <circle cx="56" cy="56" r="56" fill="url(#wg)"/>
+  <path d="M56 22a33 33 0 0 0-28.4 49.8L23 89l17.7-4.5A33 33 0 1 0 56 22z" fill="none" stroke="#fff" stroke-width="6.5" stroke-linejoin="round"/>
+  <g transform="translate(37 37) scale(1.6)"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#fff" transform="translate(23.5 0) scale(-1 1)"/></g></svg>
+  <span class="num">052-398-8039</span></div>
+</div>
+<div id="flash"></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-cl(x),3), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const ob=x=>{x=cl(x);const c1=1.4,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+document.querySelectorAll('.swp').forEach(p=>{p.setAttribute('fill','none');p.setAttribute('stroke','url(#gg)');p.setAttribute('stroke-width',3);p.setAttribute('stroke-linecap','round')});
+// sparkles in after-photo coords
+const SP=[[300,668,30,0],[380,640,20,.35],[470,662,26,.7],[250,705,16,1.1],[700,535,28,.2],[780,512,20,.55],[855,540,30,.9],[900,585,16,1.3],[560,460,14,1.6],[430,730,12,.45],[770,610,14,1.05]];
+const spk=$('spk');spk.innerHTML='<defs><radialGradient id="sg"><stop offset="0" stop-color="#fff3d6" stop-opacity=".95"/><stop offset=".35" stop-color="#ffd99a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd99a" stop-opacity="0"/></radialGradient></defs>';
+SP.forEach(()=>{const g=document.createElementNS(NS,'g');g.innerHTML='<circle r="1" fill="url(#sg)"/><path d="M0 -1 Q0.12 -0.12 1 0 Q0.12 0.12 0 1 Q-0.12 0.12 -1 0 Q-0.12 -0.12 0 -1Z" fill="#fffaf0"/>';spk.appendChild(g)});
+let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const DU=[];const dust=$('dust');for(let i=0;i<60;i++){const c=document.createElementNS(NS,'circle');const d={x:rnd()*1080,y:rnd()*1920,r:1.5+rnd()*4.5,v:20+rnd()*55,ph:rnd()*6.28,c};c.setAttribute('fill',rnd()<.5?'#fffaf0':'#d9b878');dust.appendChild(c);DU.push(d)}
+function word(el,sh,t0,t,dur=0.9,out=null){
+ const p=cl((t-t0)/dur);let o=1,blur=0;
+ if(out!==null&&t>out){const q=cl((t-out)/0.35);o=1-q;blur=q*14}
+ const r=-20+p*140;const m=`linear-gradient(90deg,#000 ${r}%,transparent ${r+18}%)`;
+ [el,sh].forEach(e=>{e.style.webkitMaskImage=m;e.style.maskImage=m;e.style.opacity=t<t0?0:o});
+ el.style.backgroundPosition=(100-((t-t0)*38)%260)+'% 0';
+ const s=1.08-0.08*eo(p),y=(1-eo(p))*30;
+ el.style.transform=sh.style.transform=`translateY(${y}px) scale(${s})`;
+ el.style.filter=`blur(${blur+(1-eo(p))*6}px) drop-shadow(0 4px 6px rgba(70,45,15,.35))`;
+ sh.style.filter=`blur(${8+blur}px)`;
+}
+// place image inside card: show image (iw x ih) scaled s, centred on (cx,cy) in card of (w x h)
+function place(img,w,h,iw,ih,s,cx,cy){img.style.width=iw+'px';img.style.height=ih+'px';img.style.transform=`translate(${w/2-cx*s}px,${h/2-cy*s}px) scale(${s})`}
+window.setTime=function(t){
+ // background
+ $('bg').style.transform=`scale(${1.03+0.02*Math.sin(t*0.4)})`;
+ [[$('s1'),-300,500,-24,0],[$('s2'),100,1150,-20,2],[$('s3'),-200,1700,-28,4]].forEach(([e,x,y,r,ph])=>{e.style.left=(x+90*Math.sin(t*0.35+ph))+'px';e.style.top=(y+40*Math.cos(t*0.3+ph))+'px';e.style.transform=`rotate(${r}deg)`});
+ document.querySelectorAll('.swp').forEach((p,i)=>{const L=1400;p.style.strokeDasharray=L;p.style.strokeDashoffset=L*(1-eio((t-0.2-i*0.25)/1.8));p.style.opacity=.55;p.setAttribute('transform',`translate(0 ${8*Math.sin(t*0.5+i)})`)});
+ DU.forEach(d=>{const y=((d.y-t*d.v)%1920+1920)%1920;d.c.setAttribute('cx',d.x+Math.sin(t+d.ph)*18);d.c.setAttribute('cy',y);d.c.setAttribute('r',d.r);d.c.setAttribute('opacity',(.3+.5*Math.abs(Math.sin(t*1.4+d.ph)))*cl(t/0.8))});
+ // flip card: in 0.1..0.9, flip 4.0..5.0, out 8.5..9.0
+ const ci=eo((t-0.1)/0.8), co=eio((t-8.45)/0.5);
+ const fp=eio((t-4.0)/1.0);
+ const fl=$('flip');fl.style.opacity=cl((t-0.1)/0.4)*(1-co);
+ fl.style.transform=`translateY(${(1-ci)*120 - co*60}px) scale(${(0.86+0.14*ci)*(1-0.08*Math.sin(Math.PI*fp))*(1-0.1*co)})`;
+ fl.style.filter=`blur(${(1-ci)*14+co*14}px)`;
+ $('fl').style.transform=`rotateY(${180*fp}deg)`;
+ // inner zooms
+ place($('bimg'),826,1106,1086,1448,0.762*(1+0.08*eio(t/4.2)),543,690);
+ const ka=cl((t-4.4)/4.2);const sa=0.762*(1+0.12*eio(ka));
+ place($('aimg'),826,1106,1086,1448,sa,560,690);
+ $('spk').style.transform=$('aimg').style.transform;
+ [...spk.querySelectorAll('g')].forEach((g,i)=>{const [x,y,r,ph]=SP[i];const lt=t-5.0-ph*0.9;const s=lt>0?Math.max(0,Math.sin(lt*2.6))**2:0;
+  g.setAttribute('transform',`translate(${x} ${y}) rotate(${lt*40}) scale(${r*s*1.5})`);g.style.opacity=s});
+ // glints across cards
+ document.querySelectorAll('#flip .gl div').forEach((g,i)=>{const t0=i?6.2:1.6;const q=(t-t0)/0.9;g.style.left=(q>0&&q<1?-300+1300*q:-400)+'px'});
+ // words
+ word($('wDo'),$('wDoS'),0.75,t,1.0,3.75); if(t<0.75)$('wDo').style.opacity=$('wDoS').style.opacity=0;
+ word($('wPo'),$('wPoS'),4.85,t,1.1,8.4); if(t<4.85)$('wPo').style.opacity=$('wPoS').style.opacity=0;
+ // split 8.8..11.0
+ const s0=8.85;const a1=eo((t-s0)/0.6),a2=eo((t-s0-0.18)/0.6);
+ $('spl').style.opacity=t<s0?0:(t>10.95?1-cl((t-10.95)/0.35):1);
+ $('c1').style.transform=`translateX(${-1100*(1-a1)}px) rotate(${-4*(1-a1)}deg)`;$('c2').style.transform=`translateX(${1100*(1-a2)}px) rotate(${4*(1-a2)}deg)`;
+ const zs=cl((t-s0)/2.2);
+ place($('p1'),866,546,1086,1448,1.25+0.1*zs,545,640);
+ place($('p2'),866,546,1086,1448,1.12+0.1*zs,565,630);
+ word($('sDo'),$('sDoS'),s0+0.55,t,0.8);word($('sPo'),$('sPoS'),s0+0.8,t,0.8);
+ if(t<s0+0.55)$('sDo').style.opacity=$('sDoS').style.opacity=0; if(t<s0+0.8)$('sPo').style.opacity=$('sPoS').style.opacity=0;
+ // final 11.1..
+ const f0=11.1;$('fin').style.opacity=cl((t-f0)/0.3);
+ const lp=ob((t-f0)/0.9);
+ $('logo').style.transform=`scale(${0.55+0.45*lp}) rotate(${(1-eo((t-f0)/1))*-12}deg)`;$('logo').style.opacity=cl((t-f0)/0.4);
+ $('logo').style.filter=`blur(${(1-eo((t-f0)/.6))*16}px) drop-shadow(0 0 ${30+14*Math.sin(t*2.4)}px rgba(255,236,200,.7))`;
+ const gx=((t-f0-1.0)%2.6)/1.0;$('glint').firstElementChild.style.left=(t>f0+1.0&&gx<1?-250+1300*gx:-400)+'px';
+ const wp=eo((t-f0-0.9)/0.7);$('wa').style.transform=`translateX(-50%) translateY(${(1-wp)*90}px) scale(${1+(t>f0+2?0.025*Math.max(0,Math.sin((t-f0-2)*3.2)):0)})`;$('wa').style.opacity=cl((t-f0-0.9)/0.5);
+ $('flash').style.opacity=Math.max(Math.exp(-Math.pow((t-4.5)/0.15,2))*0.45,Math.exp(-Math.pow((t-8.85)/0.12,2))*0.6,Math.exp(-Math.pow((t-11.1)/0.15,2))*0.65);
+ $('st').style.opacity=t>14.6?1-cl((t-14.6)/0.4):(t<0.25?cl(t/0.25):1);
+};
+
+document.body.className=(location.hash||'#').slice(1);
+// silk folds
+const FO=[];const fg=$('folds');for(let i=0;i<9;i++){const p=document.createElementNS(NS,'path');p.setAttribute('fill',i%2?'url(#f1)':'url(#f2)');p.setAttribute('opacity',.85);fg.appendChild(p);FO.push(p)}
+function silk(t){FO.forEach((p,i)=>{const y=-300+i*290,a=140+40*Math.sin(i*1.7),ph=t*0.35+i*0.9;
+ const y1=y+a*Math.sin(ph),y2=y+80-a*Math.cos(ph*0.8),w=230+60*Math.sin(i);
+ p.setAttribute('d',`M-200 ${y} C 250 ${y1-260}, 700 ${y2+300}, 1300 ${y-120} L 1300 ${y-120+w} C 700 ${y2+300+w*.6}, 250 ${y1-260+w*1.3}, -200 ${y+w} Z`)})}
+const GB=[...document.querySelectorAll('.gb')];
+const BK=[];seed=21;for(let i=0;i<26;i++){const c=document.createElementNS(NS,'circle');const r=10+rnd()*70;c.setAttribute('r',r);c.setAttribute('fill',rnd()<.6?'#e9c98f':'#ffe8c4');c.style.filter=`blur(${2+rnd()*10}px)`;$('bok').appendChild(c);BK.push({c,x:rnd()*1080,y:rnd()*1920,v:6+rnd()*18,ph:rnd()*6.28,o:.15+rnd()*.4})}
+const _st=window.setTime;window.setTime=function(t){_st(t);
+ const b=document.body.className;
+ if(b=='silk')silk(t);
+ if(b=='glass')GB.forEach((g,i)=>{g.style.left=(-300+((i*413)%900)+160*Math.sin(t*0.3+i*1.3))+'px';g.style.top=(-200+i*420+120*Math.cos(t*0.25+i))+'px'});
+ if(b=='dark'){BK.forEach(d=>{d.c.setAttribute('cx',d.x+20*Math.sin(t*0.4+d.ph));d.c.setAttribute('cy',((d.y-t*d.v)%1920+1920)%1920);d.c.setAttribute('opacity',d.o*(0.6+0.4*Math.sin(t*1.2+d.ph)))});$('rays').style.transform=`rotate(${t*1.5}deg)`}
+ if(b=='marble')$('marble').style.transform=`scale(${1.04+0.03*Math.sin(t*0.2)})`;
+};
+
+document.fonts.ready.then(()=>Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))).then(()=>{setTime(0);document.body.dataset.ready=1});
+</script></body></html>
