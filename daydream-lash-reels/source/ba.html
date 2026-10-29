@@ -1,0 +1,150 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#st{position:absolute;inset:0;overflow:hidden}
+.L{position:absolute;inset:0;overflow:hidden}
+#vid{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 820px}
+#aftw{transform-origin:560px 840px;position:absolute;inset:0}
+#aimg{position:absolute;left:-180px;top:0;width:1440px;height:1920px}
+#spk{position:absolute;left:-180px;top:0;width:1440px;height:1920px;overflow:visible}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 60% at 50% 45%,transparent 55%,rgba(30,18,12,.45) 100%);pointer-events:none}
+.topfade{position:absolute;left:0;right:0;top:0;height:640px;background:linear-gradient(rgba(25,15,10,.42),transparent)}
+.word{position:absolute;left:0;right:0;text-align:center;font-family:'Great Vibes';line-height:1.3;
+ background:linear-gradient(100deg,#7d5a2b 0%,#c9a062 22%,#fff1cf 38%,#e2c48c 50%,#a77d42 66%,#f6e2b4 80%,#8c6a35 100%);background-size:260% 100%;
+ -webkit-background-clip:text;background-clip:text;color:transparent;padding:0 60px}
+.wsh{position:absolute;left:0;right:0;text-align:center;font-family:'Great Vibes';line-height:1.3;color:rgba(35,18,8,.8);filter:blur(10px);padding:0 60px}
+#line{position:absolute;top:0;width:6px;height:1920px;margin-left:-3px;background:linear-gradient(#f3dca8,#fff7e3,#c9a062,#fff7e3,#f3dca8);box-shadow:0 0 18px 6px rgba(255,226,170,.85),0 0 60px 20px rgba(255,210,150,.45)}
+#flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#fff8ea,#ffe6c2 45%,rgba(255,220,180,0) 80%);opacity:0;pointer-events:none}
+#leak{position:absolute;width:1400px;height:1400px;border-radius:50%;background:radial-gradient(circle,rgba(255,190,120,.55),rgba(255,160,90,.18) 45%,transparent 70%);mix-blend-mode:screen;opacity:0}
+.pane{position:absolute;left:0;width:1080px;height:957px;overflow:hidden}
+.pane img{position:absolute}
+#div{position:absolute;left:0;top:957px;width:1080px;height:6px;background:linear-gradient(90deg,#8c6a35,#fff1cf,#c9a062,#fff1cf,#8c6a35);box-shadow:0 0 16px 4px rgba(255,226,170,.7)}
+#fin{position:absolute;inset:0;opacity:0}
+#fbg{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px;object-fit:cover;filter:blur(46px) saturate(.8)}
+#ftint{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(240,222,200,.72),rgba(214,188,160,.80) 60%,rgba(170,138,108,.85))}
+#logo{position:absolute;left:150px;top:330px;width:780px;height:780px}
+#logo img{width:100%;height:100%;border-radius:50%;box-shadow:0 30px 80px rgba(90,60,30,.35)}
+#glint{position:absolute;inset:0;border-radius:50%;overflow:hidden;mix-blend-mode:screen}
+#glint div{position:absolute;top:-20%;width:180px;height:140%;background:linear-gradient(90deg,transparent,rgba(255,248,225,.75),transparent);transform:rotate(20deg)}
+#wa{position:absolute;left:50%;top:1215px;height:150px;border-radius:75px;padding:0 54px 0 22px;display:flex;align-items:center;gap:28px;
+ background:rgba(255,250,242,.82);box-shadow:0 14px 40px rgba(90,60,30,.25),inset 0 0 0 3px rgba(201,160,98,.85);white-space:nowrap}
+#wa .num{font-family:'Cormorant Garamond';font-weight:700;font-size:84px;letter-spacing:.02em;
+ background:linear-gradient(100deg,#6e4d22,#a77d42 40%,#c9a062 55%,#6e4d22);-webkit-background-clip:text;background-clip:text;color:transparent}
+#cap{position:absolute;left:0;right:0;top:1150px;text-align:center;font-family:Manrope;font-weight:600;font-size:34px;letter-spacing:.32em;color:#7a5a32}
+#dust{position:absolute;inset:0}
+</style></head><body><div id="st">
+<!-- BEFORE -->
+<div class="L" id="bef"><img id="vid" src="vf/v0001.jpg"><div class="vig"></div><div class="topfade"></div></div>
+<!-- AFTER -->
+<div class="L" id="aft"><div id="aftw"><img id="aimg" src="after.jpg"><svg id="spk" viewBox="0 0 1440 1920"></svg></div><div class="vig"></div><div class="topfade"></div></div>
+<div id="line"></div>
+<!-- SPLIT -->
+<div class="L" id="spl" style="opacity:0">
+ <div class="pane" id="pt" style="top:0"><img id="pvid" src="vf/v0030.jpg"></div>
+ <div class="pane" id="pb" style="top:963px"><img id="paft" src="after.jpg"></div>
+ <div id="div"></div>
+ <div class="wsh" id="sDoS" style="top:720px;font-size:170px">До</div><div class="word" id="sDo" style="top:720px;font-size:170px">До</div>
+ <div class="wsh" id="sPoS" style="top:1640px;font-size:170px">После</div><div class="word" id="sPo" style="top:1640px;font-size:170px">После</div>
+</div>
+<!-- WORDS -->
+<div class="wsh" id="wDoS" style="top:250px;font-size:330px">До</div><div class="word" id="wDo" style="top:250px;font-size:330px">До</div>
+<div class="wsh" id="wPoS" style="top:250px;font-size:300px">После</div><div class="word" id="wPo" style="top:250px;font-size:300px">После</div>
+<!-- FINAL -->
+<div id="fin"><img id="fbg" src="after.jpg"><div id="ftint"></div><svg id="dust" viewBox="0 0 1080 1920"></svg>
+ <div id="logo"><img src="logo_round.png"><div id="glint"><div></div></div></div>
+ <div id="wa"><svg width="112" height="112" viewBox="0 0 112 112"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5FFC7B"/><stop offset="1" stop-color="#28D146"/></linearGradient></defs>
+  <circle cx="56" cy="56" r="56" fill="url(#wg)"/>
+  <path d="M56 22a33 33 0 0 0-28.4 49.8L23 89l17.7-4.5A33 33 0 1 0 56 22z" fill="none" stroke="#fff" stroke-width="6.5" stroke-linejoin="round"/>
+  <g transform="translate(37 37) scale(1.6)"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#fff" transform="translate(23.5 0) scale(-1 1)"/></g></svg>
+  <span class="num">052-398-8039</span></div>
+</div>
+<div id="leak"></div><div id="flash"></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-cl(x),3), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const ob=x=>{x=cl(x);const c1=1.5,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const NS='http://www.w3.org/2000/svg';
+// sparkles near lashes (photo coords 1440x1920)
+const SP=[[350,905,34,0],[440,860,22,.35],[560,880,28,.7],[300,960,18,1.1],[880,700,30,.2],[980,665,22,.55],[1090,700,34,.9],[1150,760,18,1.3],[720,600,16,1.6],[620,980,14,.45],[1010,820,16,1.05]];
+const spk=$('spk');SP.forEach(()=>{const g=document.createElementNS(NS,'g');g.innerHTML='<circle r="1" fill="url(#sg)"/><path d="M0 -1 Q0.12 -0.12 1 0 Q0.12 0.12 0 1 Q-0.12 0.12 -1 0 Q-0.12 -0.12 0 -1Z" fill="#fffaf0"/>';spk.appendChild(g)});
+spk.insertAdjacentHTML('afterbegin','<defs><radialGradient id="sg"><stop offset="0" stop-color="#fff3d6" stop-opacity=".95"/><stop offset=".35" stop-color="#ffd99a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd99a" stop-opacity="0"/></radialGradient></defs>');
+// dust
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const DU=[];const dust=$('dust');for(let i=0;i<46;i++){const c=document.createElementNS(NS,'circle');const d={x:rnd()*1080,y:rnd()*1920,r:2+rnd()*5,v:30+rnd()*70,ph:rnd()*6.28,c};c.setAttribute('fill',rnd()<.5?'#fff4dc':'#e2c48c');dust.appendChild(c);DU.push(d)}
+function word(el,sh,t0,t,dur=0.9,out=null){
+ const p=cl((t-t0)/dur);let o=1,blur=0;
+ if(out!==null&&t>out){const q=cl((t-out)/0.35);o=1-q;blur=q*14}
+ const reveal=-20+p*140; // handwriting mask
+ const m=`linear-gradient(90deg,#000 ${reveal}%,transparent ${reveal+18}%)`;
+ [el,sh].forEach(e=>{e.style.webkitMaskImage=m;e.style.maskImage=m;e.style.opacity=(t<t0?0:o)});
+ el.style.backgroundPosition=(100-((t-t0)*38)%260)+'% 0';
+ const s=1.08-0.08*eo(p), y=(1-eo(p))*30;
+ el.style.transform=sh.style.transform=`translateY(${y}px) scale(${s})`;
+ el.style.filter=`blur(${blur+(1-eo(p))*6}px) drop-shadow(0 0 ${12+8*Math.sin(t*3)}px rgba(255,225,170,.55))`;
+ sh.style.filter=`blur(${8+blur}px)`;
+}
+let lastSrc={};
+function setImg(img,src){if(lastSrc[img.id]===src)return Promise.resolve();lastSrc[img.id]=src;img.src=src;return img.decode().catch(()=>{})}
+function vf(sec){const n=Math.max(1,Math.min(224,Math.round(sec*30)+1));return 'vf/v'+String(n).padStart(4,'0')+'.jpg'}
+window.setTime=async function(t){
+ const P=[];
+ // ---- BEFORE 0..5.0
+ P.push(setImg($('vid'),vf(0.4+t)));
+ $('vid').style.transform=`scale(${1.02+0.07*eio(t/5)}) translateY(${-10*t}px)`;
+ $('bef').style.opacity=t<0.35?eo(t/0.35):1;
+ $('bef').style.filter=`blur(${t<.35?(1-eo(t/.35))*18:0}px)`;
+ // slider 4.1..5.0 : line moves right->left
+ const sp=eio((t-4.1)/0.9);const lx=1080*(1-sp)+(-20)*sp;
+ $('aft').style.clipPath=`inset(0 0 0 ${t<4.1?1080:lx}px)`;
+ $('line').style.left=lx+'px';$('line').style.opacity=(t>4.05&&t<5.05)?1:0;
+ // after ken burns 4.1..8.9
+ const ka=cl((t-4.1)/4.8);
+ $('aftw').style.transform=`scale(${1.0+0.13*eio(ka)}) translate(${-14*ka}px,${10*ka}px)`;
+ // sparkles
+ [...spk.querySelectorAll('g')].forEach((g,i)=>{const [x,y,r,ph]=SP[i];const lt=t-5.0-ph*0.9;let s=0;
+  if(lt>0){s=Math.max(0,Math.sin(lt*2.6))**2}
+  g.setAttribute('transform',`translate(${x} ${y}) rotate(${lt*40}) scale(${r*s*1.6})`);g.style.opacity=s});
+ // words
+ word($('wDo'),$('wDoS'),0.45,t,1.0,3.85);
+ word($('wPo'),$('wPoS'),4.75,t,1.1,8.55);
+ if(t<0.45){$('wDo').style.opacity=$('wDoS').style.opacity=0}
+ if(t<4.75){$('wPo').style.opacity=$('wPoS').style.opacity=0}
+ // leak during slider and before split
+ const lk=Math.max(Math.exp(-Math.pow((t-4.6)/0.35,2)),Math.exp(-Math.pow((t-8.85)/0.25,2)),Math.exp(-Math.pow((t-11.1)/0.3,2)));
+ $('leak').style.opacity=lk;$('leak').style.left=(-500+600*Math.sin(t*0.9))+'px';$('leak').style.top=(300+300*Math.cos(t*0.7))+'px';
+ // ---- SPLIT 8.8..11.2
+ const s0=8.8;const sp2=cl((t-s0)/0.55);
+ $('spl').style.opacity=t<s0?0:(t>11.0?1-cl((t-11.0)/0.35):1);
+ const pt=$('pt'),pb=$('pb');
+ pt.style.transform=`translateX(${-1080*(1-eo(sp2))}px)`;pb.style.transform=`translateX(${1080*(1-eo(sp2))}px)`;
+ $('div').style.transform=`scaleX(${eo((t-s0-0.3)/0.5)})`;
+ if(t>=s0-0.1){P.push(setImg($('pvid'),vf(1.2+(t-s0))))}
+ const zs=cl((t-s0)/2.4);
+ // top: before eyes; base frame 1080x1920, eyes ~ (540,820)
+ const zt=1.55+0.12*zs;$('pvid').style.cssText=`left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;transform:translate(${540-545*zt}px,${478-820*zt}px) scale(${zt})`;
+ const za=1.25+0.12*zs;const aw=1440,ah=1920; // after scaled to 1440x1920, eyes ~ (740,850) in that space
+ $('paft').style.cssText=`left:0;top:0;width:${aw}px;height:${ah}px;transform-origin:0 0;transform:translate(${540-740*za}px,${478-850*za}px) scale(${za})`;
+ word($('sDo'),$('sDoS'),s0+0.45,t,0.8);word($('sPo'),$('sPoS'),s0+0.75,t,0.8);
+ if(t<s0+0.45){$('sDo').style.opacity=$('sDoS').style.opacity=0} if(t<s0+0.75){$('sPo').style.opacity=$('sPoS').style.opacity=0}
+ // ---- FINAL 11.0..
+ const f0=11.0;const fo=cl((t-f0)/0.45);$('fin').style.opacity=fo;
+ $('fbg').style.transform=`scale(${1.05+0.04*cl((t-f0)/3.5)})`;
+ const lp=ob((t-f0-0.15)/0.9);
+ $('logo').style.transform=`scale(${0.55+0.45*lp}) rotate(${(1-eo((t-f0-.15)/1))*-12}deg)`;$('logo').style.opacity=cl((t-f0-0.15)/0.4);
+ $('logo').style.filter=`blur(${(1-eo((t-f0-.15)/.6))*16}px) drop-shadow(0 0 ${30+14*Math.sin(t*2.4)}px rgba(255,228,180,.6))`;
+ const gx=((t-f0-1.1)%2.6)/1.0;$('glint').firstElementChild.style.left=(t>f0+1.1&&gx<1? -250+1300*gx:-400)+'px';
+ const wp=eo((t-f0-1.0)/0.7);$('wa').style.transform=`translateX(-50%) translateY(${(1-wp)*90}px) scale(${1+0.025*Math.max(0,Math.sin((t-f0-2)*3.2))*(t>f0+2?1:0)})`;$('wa').style.opacity=cl((t-f0-1.0)/0.5);
+ DU.forEach(d=>{const lt=t-f0;const y=((d.y-lt*d.v)%1920+1920)%1920;d.c.setAttribute('cx',d.x+Math.sin(lt+d.ph)*20);d.c.setAttribute('cy',y);d.c.setAttribute('r',d.r);d.c.setAttribute('opacity',(.35+.5*Math.abs(Math.sin(lt*1.5+d.ph)))*cl(lt/0.6))});
+ // flashes
+ const fl=Math.max(0.0,Math.exp(-Math.pow((t-8.8)/0.12,2))*0.85,Math.exp(-Math.pow((t-11.05)/0.16,2))*0.7);
+ $('flash').style.opacity=fl;
+ // end fade
+ $('st').style.opacity=t>14.6?1-cl((t-14.6)/0.4):1;
+ await Promise.all(P);
+};
+document.fonts.ready.then(()=>{window.setTime(0).then(()=>document.body.dataset.ready=1)});
+</script></body></html>
