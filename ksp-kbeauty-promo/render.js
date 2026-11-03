@@ -9,7 +9,7 @@ const has = (f) => fs.existsSync(path.join(dir, 'src', f));
 const img = (f) => 'file://' + path.join(dir, 'src', f);
 
 const P = [
-  { wm: 'Beauty of Joseon', name: 'Солнцезащитный крем SPF50', size: 'Рис и пробиотики, 50 мл', img: 'beauty-of-joseon-spf50.jpg', now: '50', was: '75' },
+  { wm: 'Beauty of Joseon', name: 'Санскрин SPF50+', size: 'Рис и пробиотики, 50 мл', img: 'beauty-of-joseon-spf50.jpg', now: '50', was: '75' },
   { wm: 'Biodance', name: 'Гидрогелевые маски', size: 'Биоколлаген, 4 шт.', img: 'biodance-mask.jpg', now: '53', was: '64' },
   { wm: 'celimax', name: 'Бустер с ретиналем', size: 'Упругость и поры, 15 мл', img: 'celimax-retinal.jpg', now: '53', was: '60' },
   { wm: 'COSRX', name: 'Advanced Snail 92', size: 'Крем с муцином улитки, 100 мл', img: 'cosrx-snail92.jpg', now: '48', was: '59' },
