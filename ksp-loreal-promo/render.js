@@ -48,8 +48,9 @@ h1 em { font-style: normal; color: #c8102e; }
 .price .now { font-family: 'Inter Display'; font-weight: 900; font-size: 38px; color: #c8102e; }
 .price .was { font-size: 20px; color: #a891a0; text-decoration: line-through; }
 .info .s .x { color: #c8102e; }
-.gift { background: #fff3f6; border: 2px dashed #e07a98; border-radius: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 22px; gap: 10px; }
-.gift .ico { font-size: 84px; line-height: 1; }
+.gift { background: #fff3f6; border: 2px dashed #e07a98; border-radius: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px 18px 18px; gap: 8px; }
+.gift .gph { flex: 1; min-height: 0; width: 100%; position: relative; }
+.gift .gph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
 .gift b { font-family: 'Inter Display'; font-weight: 900; font-size: 30px; color: #c8102e; text-transform: uppercase; letter-spacing: .04em; }
 .gift p { font-size: 20px; line-height: 1.3; font-weight: 600; color: #5b3a4a; }
 .gift p strong { color: #3a2230; }
@@ -82,7 +83,7 @@ const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><style>
   <h1>Красота<br>по <em>выгодной</em> цене</h1>
   <div class="brands">L'Oréal · Garnier · Essie · Maybelline</div></div>
   <div class="promo"><small>скидки<br>до</small><b>−${maxOff}%</b></div>
-  <div class="grid">${P.map(card).join('')}<div class="gift"><div class="ico">🎁</div><b>Подарок</b><p>Помада <strong>Maybelline Matte&nbsp;Ink</strong> в&nbsp;специальном размере при&nbsp;покупке от&nbsp;<strong>99&nbsp;₪</strong></p></div></div>
+  <div class="grid">${P.map(card).join('')}<div class="gift"><b>🎁 Подарок</b><div class="gph"><img src="${img('maybelline-matte-ink.jpg')}"></div><p>Помада <strong>Maybelline Matte&nbsp;Ink</strong> в&nbsp;специальном размере при&nbsp;покупке от&nbsp;<strong>99&nbsp;₪</strong></p></div></div>
   <div class="foot"><div class="ksp"><img src="${img('ksp-logo.png')}"></div><p>Скидки применяются в корзине при переходе по ссылкам.<br>До 30.11.2026 или до окончания запасов.</p></div>
 </div></body></html>`;
 
