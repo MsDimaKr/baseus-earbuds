@@ -10,7 +10,7 @@ const img = (f) => 'file://' + path.join(dir, 'src', f);
 
 const P = [
   { wm: "L'Oréal Paris", name: 'Тушь Telescopic', size: 'Удлинение и объём', img: 'loreal-telescopic.jpg', now: '43', was: '49' },
-  { wm: "L'Oréal Elvive", name: 'Шампунь Hydra Pure', size: 'Свежесть до 72 часов', img: 'elvive-hydra-pure.jpg', now: '14', was: '17' },
+  { wm: "L'Oréal Elvive", name: 'Шампунь Hydra Pure', size: 'Свежесть до 72 часов', img: 'elvive-hydra-pure.jpg', now: '15', was: '17' },
   { wm: 'Garnier', name: 'Мицеллярная вода', size: 'Skin Naturals, 700 мл', img: 'garnier-micellar-700.jpg', now: '32', was: '41' },
   { wm: 'essie', name: 'Топ Gel Couture', size: 'Верхнее покрытие, 13.5 мл', img: 'essie-gel-couture-top.jpg', now: '34', was: '44' },
   { wm: 'Maybelline', name: 'Гель для бровей', size: 'Super Lock, 7 мл', img: 'maybelline-superlock.jpg', now: '37', was: '49', note: '+7% к акции' },
