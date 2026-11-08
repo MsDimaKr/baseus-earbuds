@@ -12,7 +12,7 @@ const ROWS = [
   {
     brand: 'Зелёная серия', cls: 'green', note: 'для дома и DIY',
     items: [
-      { name: 'Набор X-Line', size: '173 предмета: свёрла, биты, дюбели', img: 'bosch-xline-173.jpg', now: '35', was: '59' },
+      { name: 'Набор X-Line', size: '173 предмета для дрели', img: 'bosch-xline-173.jpg', now: '35', was: '59' },
       { name: 'Ящик с инструментами', size: '73 предмета', img: 'bosch-toolbox-73.jpg', now: '89', was: '99' },
       { name: 'Набор V-Line', size: '103 свёрла и биты', img: 'bosch-vline-103.jpg', now: '89', was: '115' },
     ],
