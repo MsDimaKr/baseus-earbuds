@@ -1,0 +1,24 @@
+{
+  "out": "ksp-bosch",
+  "kicker": "🔧 Аксессуары Bosch в KSP",
+  "headline": "Инструменты<br>по <em>выгодной</em> цене",
+  "brands": "<span class=\"logo\">BOSCH</span> · +10% поверх акций",
+  "until": "30.11.2026",
+  "seed": 31,
+  "theme": { "text": "#14202b", "bg2": "#eef1f3", "bg3": "#dde3e8", "deco": "#c9d2da", "decoChar": "⚙",
+             "kicker": "#3c5566", "sub": "#3a4a56", "muted": "#566470", "logoColor": "#e20015" },
+  "rows": [
+    { "label": "Зелёная серия", "cls": "green", "color": "#007a5e", "bar": "#00a37a", "note": "для дома и DIY",
+      "items": [
+        { "name": "Набор X-Line", "size": "173 предмета для дрели", "img": "bosch-xline-173.jpg", "now": "35", "was": "59" },
+        { "name": "Ящик с инструментами", "size": "73 предмета", "img": "bosch-toolbox-73.jpg", "now": "89", "was": "99" },
+        { "name": "Набор V-Line", "size": "103 свёрла и биты", "img": "bosch-vline-103.jpg", "now": "89", "was": "115" }
+      ] },
+    { "label": "Синяя серия", "cls": "blue", "color": "#00539b", "bar": "#1a6fc4", "note": "профессиональная",
+      "items": [
+        { "name": "Биты Extra Hard", "size": "43 предмета, с держателем", "img": "bosch-extra-hard-43.jpg", "now": "107", "was": "149" },
+        { "name": "Свёрла SDS Plus-1", "size": "5 шт. для перфоратора", "img": "bosch-sds-plus-1.jpg", "now": "35", "was": "50" },
+        { "name": "Губки Expert", "size": "3 шлифовальные губки", "img": "bosch-expert-sponges.jpg", "now": "22", "was": "29" }
+      ] }
+  ]
+}

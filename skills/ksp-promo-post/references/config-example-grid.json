@@ -1,0 +1,15 @@
+{
+  "out": "ksp-loreal",
+  "kicker": "💄 Косметика L’Oréal в KSP",
+  "headline": "Красота<br>по <em>выгодной</em> цене",
+  "brands": "L'Oréal · Garnier · Essie · Maybelline",
+  "until": "30.11.2026",
+  "seed": 23,
+  "theme": { "text": "#3a2230", "bg2": "#fbeff2", "bg3": "#f3dce3", "deco": "#ecc6d2", "decoChar": "✿",
+             "kicker": "#a2476a", "sub": "#6b4558", "muted": "#7a5c69", "was": "#a891a0", "shadow": "80,30,50" },
+  "grid": [
+    { "wm": "L'Oréal Paris", "name": "Тушь Telescopic", "size": "Удлинение и объём", "img": "loreal-telescopic.jpg", "now": "43", "was": "49" },
+    { "wm": "Maybelline", "name": "Гель для бровей", "size": "Super Lock, 7 мл", "img": "maybelline-superlock.jpg", "now": "37", "was": "49", "note": "+7% к акции" }
+  ],
+  "gift": { "img": "maybelline-matte-ink.jpg", "text": "Помада <strong>Maybelline Matte&nbsp;Ink</strong> при&nbsp;покупке от&nbsp;<strong>99&nbsp;₪</strong>" }
+}
