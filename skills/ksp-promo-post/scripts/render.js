@@ -1,4 +1,4 @@
-// Renders a KSP promo image (1080×1350 PNG) from a JSON config.
+// Рендерит промо-картинку KSP (PNG 1080×1350) из JSON-конфига.
 // Usage: NODE_PATH=$(npm root -g) node render.js <promo-dir>
 //   <promo-dir>/config.json  – content + theme (see SKILL.md / references/config-example.json)
 //   <promo-dir>/src/         – product images, ksp-logo.png, optional brand logos
